@@ -1,0 +1,16 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\subsection{Optimal Excitation}
+\label{subsec:OptimalExcitation}
+
+For precise and robust parameter estimation an optimized trajectory needs to be generated. In this paper an optimized \textsc{Fourier} series trajectory is used as a baseline for comparison. It is optimized by minimizing the condition number $\kappa(\boldsymbol{C})$ of the design matrix $\boldsymbol{C}$ \cite{Bona.2005,Kostic.2004,Olsen.2002,Swevers.1997}.
+The \textsc{Fourier} series for each joint $j$ is given by:
+\begin{equation} 
+\label{eq:fourier_series}
+q_j(t) = \alpha_{0,j} + \sum \limits_{k=1}^{n_\mathrm{h}} \left\{ \frac{\alpha_{k,j}}{k \omega_\mathrm{b}} \sin(k \omega_\mathrm{b} t) + \frac{\beta_{k,j}}{k \omega_\mathrm{b}} \cos(k \omega_\mathrm{b} t) \right\}.
+\end{equation}
+Based on the suggestions of \cite{Swevers.1997,Bona.2005}, the order is set to $n_\mathrm{h}=5$ and the base frequency is set to $\omega_\mathrm{b}=2\pi \cdot 0.1\,\mathrm{Hz}$. The amplitudes $\alpha_{k,j}$ and $\beta_{k,j}$ are varied by a genetic algorithm under consideration of the given boundary conditions, see below.
+% For the optimization a genetic algorithm from the \textit{Global Optimisation Toolbox} in \textsc{Matlab} was used. 
+To take into account the different magnitudes and units of the individual parameters, $\boldsymbol{C}$ is normalized during the optimization according to \cite{Sun.2008}.
+
+%\textbf{(Aufgrund der begrenzten Seitenzahl würde ich hier bei dem Verweis auf die Quelle bleiben.)}

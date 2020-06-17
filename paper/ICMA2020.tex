@@ -1,0 +1,105 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+
+\documentclass[conference,letterpaper]{IEEEtran}
+% If the IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it:
+% \documentclass[conference]{../sty/IEEEtran}
+\IEEEoverridecommandlockouts
+\overrideIEEEmargins
+
+
+
+%\documentclass[conference]{IEEEtran}
+% If the IEEEtran.cls has not been installed into the LaTeX system files, 
+% manually specify the path to it:
+% \documentclass[conference]{../sty/IEEEtran} 
+
+
+% some very useful LaTeX packages include:
+
+\usepackage{cite}      % Written by Donald Arseneau
+\usepackage{graphicx}  % Written by David Carlisle and 
+\usepackage{psfrag}    % Written by Craig Barratt, Michael C. Grant,
+
+\usepackage{subfigure} % Written by Steven Douglas Cochran
+\usepackage{url}       % Written by Donald Arseneau
+\usepackage{stfloats}  % Written by Sigitas Tolusis
+\usepackage{amsmath}   % From the American Mathematical Society
+\usepackage{bm}        % Für fettgedruckte Formelzeichen
+%Use:
+\interdisplaylinepenalty=2500
+\usepackage{array}
+\usepackage{epsfig}
+
+\usepackage{calc}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+\usepackage{multicol}
+\usepackage{pslatex}
+%\usepackage{apalike}
+\usepackage[ngerman]{babel}
+
+\usepackage{siunitx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\graphicspath{{Chapters/Experimental_Results/Experimental_Validation/}}
+
+%\usepackage{caption}
+%\usepackage{subcaption}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor IEEEtran}
+
+% Für Deutsche Umlaute
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+% paper title
+%\title{Optimal Modelling for in Process Identification of Robot Models}
+\title{Sensitivity-based Model Reduction for In-Process Identification of Industrial Robots Inverse Dynamics}
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\authorblockN{Björn Volkmann, Daniel Kaczor, Mathias Tantau, Moritz Schappler and Tobias Ortmaier}
+\authorblockA{\textit{Institute of Mechatronic Systems, Leibniz Universität Hannover, Germany}\\
+Email: mathias.tantau@imes.uni-hannover.de}}
+
+% make the title area
+\maketitle
+
+\begin{abstract}
+This paper presents a sensitivity-based approach for optimal model design and identification of the dynamics of a state-of-the-art industrial robot considering process-related restrictions.
+The possibility of parameter excitation for subsequent identification of the model parameters is severely limited due to restrictions imposed by the process environment, especially the limited available workspace. 
+Without sufficient parameter excitation, a satisfactory quality of the full model identification cannot be achieved, since non-excited parameters cannot be identified correctly.  
+Furthermore, optimal excitation requires time-consuming calculations and distinct experiments during which the robot is not available for daily operation. 
+It is therefore of interest to use process-related trajectories instead of dedicated excitation trajectories, which is expected to deteriorate the identifiability of the model parameters.
+For this reason, the presented method uses a sensitivity-based approach allowing model order reduction in the identification process. The resulting model contains only those parameters excited by the excitation trajectory. For process-related trajectories this implies the model being limited to parameters relevant for the process. 
+In experiments with a standard serial-link industrial robot controlled by standard industrial programmable logic control and servo inverters it is shown that the method produces significantly reduced models with a good measure of identifiability and quality.
+\end{abstract}
+
+% no keywords
+
+% Will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
+
+\input{Chapters/Introduction/Introduction}
+\input{Chapters/Theoretical_Background/Theoretical_Background}
+\input{Chapters/Experiments/Experiments}
+\input{Chapters/Experimental_Results/Experimental_Results}
+\input{Chapters/Conclusion/Conclusion}
+\input{Chapters/Acknowledgment/Acknowledgment}
+
+\input{Chapters/Appendix/Appendix}
+
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{acm}
+\bibliography{Literatur}
+
+\end{document}
+
+

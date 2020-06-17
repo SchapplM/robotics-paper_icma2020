@@ -1,0 +1,39 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\section{Introduction}
+\label{subsec:Introduction}
+
+Highly dynamic handling processes such as pick and place applications are common in industrial robotics.
+One of the most important quality factors, besides the lowest possible cycle time, is the accuracy of the performed movements. The more dynamic a motion sequence is supposed to be, the more demanding it is to achieve the accuracy requirements. For this reason, there are many approaches in the field of robotics aiming to improve the accuracy of the system under the influence of highly dynamic movements. 
+
+One of the most widespread methods to achieve this goal is the model-based feedforward control of the motor torque for a given motion profile.
+This method is based on the complete knowledge of the dynamics model and its parameters. 
+In most cases, however, this knowledge is not completely available. 
+For this reason the missing model parameters have to be identified with a suitable excitation. 
+A widely used method to perform this excitation is the parameter excitation with Fourier-based trajectories \cite{Park.2006,Swevers.1997}.
+The coefficients of the Fourier series are optimized for minimal sensitivity of the identification to measurement disturbances. 
+\cite{Goutier.2012} and \cite{Goutier.2014} present a method in which the identification of the parameters of industrial robots is carried out with the aid of an additional payload with exactly known mass. 
+It is attached to the end-effector to improve the identifiability and excitation of the parameters during the identification process.
+The separate identification of individual model parameters is presented in \cite{Wernholt.2006}. 
+Here, a three-step sequential routine for the isolated identification of the friction and dynamics parameters and the values for elasticities of an industrial robot is performed. By the individual identification using different exitation trajectories for each parameter an improvement of the identifiability of the respective parameters can be achieved.
+Further, \cite{Khalil.2007} presents a procedure for individual identification of the additional payload at the end-effector of the robot.
+
+These approaches for the dynamics identification of a robot mostly use industrial hardware, but they do not take into account the process-related restrictions that apply when dealing with a robot that is already integrated into the production process. 
+In the process environment, a robot is mostly surrounded by other systems such as conveyor belts or other robots so that it can only move in a part of its actually possible workspace. This fact strongly limits the possibility to perform a sufficient and generally valid trajectory for a successful parameter excitation or makes it impossible in many cases. As a result, the model parameters cannot be identified with sufficient accuracy and the methods mentioned above can only be used to a very limited extent. 
+Furthermore, an interruption of the running process and additional working hours are necessary to perform a dedicated excitation trajectory. 
+% This is not desired in most cases, since additional working hours are necessary for the trajectory generation. 
+A separate sequential identification with different excitation trajectories or the use of an additional testing payload is also not applicable in the process.
+
+To address these limitations, we present a sensitivity-based method that allows to identify the model parameters and/or reduce the robot model during the robot's designated process. In this way the model adapts to the circumstances of the given excitation. It is not necessary to optimize and run an additional excitation trajectory and the process does not have to be stopped at any time and can be continued unaffectedly. 
+The presented method is demonstrated by identifying necessary parameters of the inverse dynamics model under process conditions of the 6-degrees-of-freedom (dof) standard serial industrial robot \textsc{Cloos QRC 350}. 
+The main contributions of this paper are:
+\begin{itemize}
+    \item identification of the dynamics parameters of an industrial robot under on-site conditions with a
+    \item scheme for reduction of parameter complexity based on given workspace and trajectories
+    \item using only standard industrial hardware.
+\end{itemize}
+
+The remainder of this paper is organized as follows: Sec.\,\ref{sec:TheoreticalBackground} gives a short view on the used inverse dynamics model and its minimal parameter formulation. Furthermore, the theoretical principles of parameter identification are presented. Sec.\,\ref{sec:Experiments} describes the performed experiments. 
+The experiment design is introduced and the investigated processes are presented. 
+Beside the consideration of the signal processing, the developed algorithm is introduced in detail.
+Sec.\,\ref{sec:Experimental_Results} provides experimental results, demonstrating the effectiveness of the proposed method. Sec.\,\ref{sec:Conclusion} concludes the paper.

@@ -1,0 +1,30 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\subsection{Signal Processing}
+\label{subsec:SignalProcessing}
+All experiments described in Sec.\,\ref{subsec:ExperimentScenario} are carried out multiple times with the same set of parameters. Over $N_\text{r}=50$ repetitions of each experiment the mean of the joint angular positions $\overline{\boldsymbol{q}}(t_p)$ and the measured torques $\overline{\boldsymbol{\tau}}(t_p)$ are calculated for every time step $t_p$. 
+
+In the case of the \textsc{Fourier} series the frequency spectrum of the excitation is known, which allows for additional filtering of the position measurements: 
+The discrete \textsc{Fourier} transform of the mean position measurements $\overline{\boldsymbol{q}}$ is calculated and only the first $n_\mathrm{h}+1$ \textsc{Fourier} coefficients are retained. These correspond to the offset, the base frequency and the $n_\mathrm{h}-1$ harmonics. Utilizing this filter technique yields nearly noise-free estimates of the joint angular positions.
+A possible loss of information is tolerated in favor of reduced noise.
+The same filter technique is used in \cite{Olsen.2002} and \cite{Stueckelmaier.}. 
+Because of the averaging of the measurement data and the additional filtering for the \textsc{Fourier} series the derivatives for the joint angular velocities and accelerations can be calculated numerically for all experiments.
+
+%Since periodic \textsc{Fourier} series are used as excitation trajectories, no leakage errors are introduced due to the allowed settling time of the system. 
+
+To take into account the different signal-to-noise ratios in each joint, the WLS method is used for parameter estimation. The measurement points are weighted using the inverse of the covariance matrix of the measured torque. The noise of the torque measurements in all joints $j$ in every time step $t_p$ can be estimated using the equation for the sample variance
+\begin{equation}\label{eq:var_tau}
+	\sigma^2_{j,p} = \frac{1}{N_\textit{r}-1} \sum\limits_{k=1}^{N_\textit{r}} (\tau_{k,j} (t_p) - \overline{\tau}_j(t_p))^2,
+\end{equation}
+where (k) refers to the repetitions of the experiment.
+The matrix $\boldsymbol{W}$ is then defined as:
+\begin{equation}\label{eq:WLS_Gew}
+	\boldsymbol{W} = \mathrm{diag}(\boldsymbol{W}_1^{-1}, \boldsymbol{W}_2^{-1}, \hdots, \boldsymbol{W}_6^{-1})
+\end{equation}
+	with
+\begin{equation}
+	\boldsymbol{W}_j = \mathrm{diag}(\sigma^2_{j,1}, \sigma^2_{j,2}, \hdots, \sigma^2_{j,p}).
+\end{equation}
+Since the measurements are assumed to be independent, $\boldsymbol{W}$ is a diagonal matrix.
+All measurements used for this evaluation were taken when the robot was at rest and in the controlled state.
+

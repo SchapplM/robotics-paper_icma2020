@@ -1,0 +1,45 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\subsection{Parameter Estimation}
+\label{subsec:ParameterEstimation}
+
+
+For parameter identification the model equations from \eqref{eq:model_equation1} are transformed into the parameter linear matrix notation
+
+\begin{equation} \label{eq:ParameterEstimation_regressor}
+    \boldsymbol{\tau} = \boldsymbol{X}(\boldsymbol{q}, \dot{\boldsymbol{q}},\ddot{\boldsymbol{q}}) \boldsymbol{\theta},
+\end{equation}
+
+where $\boldsymbol{\tau}$ is the joint torque vector, $\boldsymbol{X}$ denotes the regression matrix and $\boldsymbol{\theta} \in \mathbb{R}^{35}$ is the parameter vector. Using a sufficient number of samples in the estimation process leads to an over-determined system of linear equations:
+
+\begin{equation} \label{eq:ParameterEstimation_problem}
+\begin{aligned}
+    \boldsymbol{y} &= \boldsymbol{C} \boldsymbol{\theta} + \boldsymbol{\epsilon}, \\
+    \begin{pmatrix}
+        \boldsymbol{\tau}(t_1) \\
+        \vdots \\
+        \boldsymbol{\tau}(t_N) \\
+    \end{pmatrix} &= 
+    \begin{pmatrix}
+        \boldsymbol{X}(t_1) \\
+        \vdots \\
+        \boldsymbol{X}(t_N) \\
+    \end{pmatrix} \boldsymbol{\theta} +
+    \begin{pmatrix}
+        \boldsymbol{e}(t_1) \\
+        \vdots \\
+        \boldsymbol{e}(t_N) \\
+    \end{pmatrix}.
+\end{aligned}
+\end{equation}
+
+Here $\boldsymbol{y}$ contains the $N$ samples of the torque vector $\boldsymbol{\tau}$, $\boldsymbol{C}$ denotes the design matrix and $\boldsymbol{\epsilon}$ is the vector of errors.
+
+Equation \eqref{eq:ParameterEstimation_problem} can be solved for $\boldsymbol{\theta}$ using a least squares estimator. The weighted least squares (WLS)  \cite{Gautier.2013,M.Gautier.1995,V.Bargsten.2013,Swevers.1997} is used to account for different levels of noise in the measurements: 
+\begin{equation} \label{eq:ParameterEstimation_WLS}
+    \begin{aligned}
+	    \hat{\boldsymbol{\theta}} &= \arg \min_{{\boldsymbol{\theta}}} (\boldsymbol{y} - \boldsymbol{C} \boldsymbol{\theta})^\mathrm{T} \boldsymbol{W} (\boldsymbol{y} - \boldsymbol{C} \boldsymbol{\theta}) \\
+	    &= (\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-1} \boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{y}.
+	\end{aligned}
+\end{equation}
+Matrix $\boldsymbol{W}$ contains the weights of the individual samples, see also Sec.\,\ref{subsec:SignalProcessing}.

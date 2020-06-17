@@ -1,0 +1,56 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\subsection{Process-Based Excitation}
+
+One of the main advantages of the process-based approach is that both data collection and processing can be automated. Additionally, no special excitation trajectory has to be generated.
+The parameter estimation is done as described in algorithm\,\ref{alg:ModelReductionAlgorithm} using the WLS method. The estimated parameters for process 1 and 2 are given in Tab.\,\ref{tab:ParamThetaProcess}. Here $\hat{\boldsymbol{\theta}}_{0}$ denotes the estimated parameters for the full model and $\hat{\boldsymbol{\theta}}_{\text{r}}$ denotes the estimated parameters for the reduced model. For both processes an error-tolerance $e_{\mathrm{tol}}$ of \SI{5}{\%} was chosen.
+
+\begin{table}[tb]
+	\caption{Estimated parameters for process 1 and 2.}\label{tab:ParamThetaProcess}
+	\centering
+	\begin{tabular}[h]{|r||c|c||c|c|}\hline
+		\input{Chapters/Experimental_Results/Process_Based_Excitation/Table_ParametersProcess}
+		\hline
+	\end{tabular}
+\end{table}
+
+For process 1 $15$ parameters were removed during the model reduction. The condition number of the full model for the excitation of process~1 is $61.7$. As a result of the model reduction, the condition number for the reduced design matrix was decreased to $8.46$. Because of the significantly lower condition number the parameter estimation becomes more robust. For process~1 the friction parameters can not be neglected since all joints perform a sufficient motion. During the model reduction of process~2 $16$ dynamics parameters and $3$ friction parameters were removed. A peculiarity of process~2 is that there is little to no movement in the joints 4 and 6. This results in a significantly higher condition number of $1632$ for the full model compared to process~1. This was reduced to $2.73$ during the model reduction. Since some joints perform little to no movement the respective friction parameters can be neglected and are removed by the model reduction algorithm. The model prediction errors for the process-models applied to the respective process are given in Tab.\,\ref{tab:errorProcessOnProcess}. Both models A and B yield similar model prediction errors for for process 1 and 2. Therefore only the model prediction errors for model A are displayed in Tab.\,\ref{tab:errorModelAOnProcess} to have a comparison to the model which was derived from the best possible excitation.% This is due to the fact that the models A and B are of similar quality when compared by their model errors as shown in section \ref{subsec:OptimalExcitation_Result}. The model prediction errors for model A and B on both processes are given in Tab. \ref{tab:errorModelAOnProcess} and \ref{tab:errorModelBOnProcess} respectively.
+
+\begin{table}[tb]
+	\caption{Prediction error for the process based models on their respective process.}\label{tab:errorProcessOnProcess}
+	\centering
+	\begin{tabular}[h]{|r||c|c||c|c|}\hline
+		\input{Chapters/Experimental_Results/Process_Based_Excitation/Table_errorProcessOnProcess}
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[tb]
+	\caption{Prediction error for model A on process 1 and 2.}\label{tab:errorModelAOnProcess}
+	\centering
+	\begin{tabular}[h]{|r||c|c||c|c|}\hline
+		\input{Chapters/Experimental_Results/Process_Based_Excitation/Table_errorModelAonProcess}
+		\hline
+	\end{tabular}
+\end{table}
+
+%\begin{table}[tb]
+%	\caption{Prediction error for model B on process 1 and 2.}\label{tab:errorModelBOnProcess}
+%	\centering
+%	\begin{tabular}[h]{|r||c|c||c|c|}\hline
+%		\input{Chapters/Experimental_Results/Process_Based_Excitation/Table_errorModelBonProcess}
+%		\hline
+%	\end{tabular}
+%\end{table}
+
+The removed model parameters are negligible for the observed process since without them the model error did not increase by more than \SI{5}{\%}. The parameters $5$, $12$, $19$ and $22$ had relatively low changes in their values throughout the model reduction and were estimated with similar values for all models. Removing them from the model also yields a significantly higher prediction error when compared to the other parameters.
+
+It is only possible to evaluate the physical consistency (see e.g. \cite{Gautier.2013}) of the parameters 8, 10, 13, 15, 16, 20, 22 and 23 since not all of the model parameters are independently identifiable. The mentioned parameters are inertia values and therefore must be positive. For the reduced models of process 1 and 2 this is the case for all mentioned parameters which were kept in the model.
+
+For the validation trajectories of both processes the design matrix was calculated using the desired values of the joint angular positions, accelerations and velocities. This was done because the models are expected to be used in a model-based feedforward control scheme which also uses the desired values. As already explained in Sec.\,\ref{subsec:OptimalExcitation_Result}, the greater deviations between the model predictions and the measured torques result from the noise on the measured torques and the dynamic behavior of the controlled system. This effect is the strongest in joints 4 and 5 for process~2 where nearly no motion is performed which results in a high signal-to-noise ratio.
+
+It should be noted that the model reduction only keeps parameters which are needed to describe the joint torques of the observed process. Therefore the resulting models may not be generally applicable. The process based identification has to be repeated for every new process the robot has to perform, and the resulting model can only be applied to that process. The parameter estimation is done through the robot application, which has to be implemented on the controller regardless. Therefore no additional expenditure arises.
+
+Despite the restraints applied on the workspace, the parameter estimation with an optimized trajectory could still be performed. However, restricting the robot workspace hampers the excitation of all parameters, as can be seen in Tab.\,\ref{tab:ParamTheta}. Applying the model reduction algorithm to models A and B for their respective excitation trajectory showed that some parameters in model B had significantly less influence on the model output when compared to model A. Compared by the model errors, both process-based models can predict the measured torque data with a similar accuracy as the models A and B. Depending on the restrictions placed on the robot workspace optimal excitation of all parameters may not always be possible. Therefore the process-based parameter estimation can be used as an alternative if the optimal excitation of all parameters is not possible.
+
+%The order in which the parameters are removed from the model is based on their sensitivity. Whether a parameter can be removed is determined by the accumulated model error during the iteration steps. Therefore the removed parameters vary, depending on the observed trajectory. 

@@ -1,0 +1,66 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+\subsection{Model Reduction Algorithm}
+A parameter identification in a process not optimized for this purpose leads to a significantly worse identifiability compared to an optimized excitation trajectory due to the sub-optimal excitation of the individual parameters.
+In order to still perform a parameter estimation directly on a process the robot model has to be reduced.
+According to \cite{Brun2001} two factors can be distinguished that lead to poor identifiability and a high condition number: sensitivity problems and collinearity problems. 
+Sensitivity can differ between parameters so that some parameters affect the output only negligibly while others dominate. Collinearity means that the effect of one parameter is compensated by the interplay of other parameters.
+
+Many model order reduction techniques strive to establish a new basis without multi-collinearities, which is possibly even orthogonal. 
+Here these approaches are prohibited by the fact that the interpretability of the base parameters should be preserved in the sense of the linear combination of physical parameters in (\ref{eq:Parametersatz}). 
+A different approach is to delete parameters that are involved in collinearity problems \cite{Akinniyi2017}, but this could change the prediction of the model considerably if the respective parameter is important. Therefore, only the sensitivity problem is addressed here. As the model can be written linear in the parameters, see \eqref{eq:ParameterEstimation_regressor}, it is possible to remove those parameters with a low sensitivity on a per-parameter basis. The parameter sensitivities depend on the excitation but not on the parameter values. For a particular excitation the sensitivity matrix is given by the design matrix $\boldsymbol{C}$. To characterize the sensitivity of a parameter $i$ with a single value the mean of the respective column $\overline{c}_i$ of $\boldsymbol{C}$ over all joints is used:
+%\begin{equation}\label{eq:mean_Sensitivity}
+%	\overline{c}_i = \frac{1}{6N} \sum_{i = 1}^{6N} \left| \boldsymbol{c}_i \right| \text{ with } \boldsymbol{C} = (\boldsymbol{c}_1, \boldsymbol{c}_2, %\hdots, \boldsymbol{c}_i).
+%\end{equation}
+\begin{equation}\label{eq:mean_Sensitivity}
+	\overline{c}_i = \frac{1}{6N} \| \boldsymbol{c}_i \|_1 \text{ with } \boldsymbol{C} = (\boldsymbol{c}_1, \boldsymbol{c}_2, \hdots, \boldsymbol{c}_i).
+\end{equation}
+
+The model error that is introduced by removing a particular parameter is evaluated using the error between the measured data $\boldsymbol{\tau}$ and the model prediction $\hat{\boldsymbol{\tau}}$. The mean absolute error 
+\begin{equation}\label{eq:absError}
+	e_{k,j} = \frac{1}{N}  \sum\limits_{p=1}^{N} \left| \tau_j(t_p) - \hat{\tau}_{k,j}(t_p) \right|,
+\end{equation}
+and the relative error
+\begin{equation}\label{eq:relError}
+	e^*_{k,j} = \frac{e_{k,j}}{\frac{1}{N} \sum\limits_{p=1}^{N} \left| \tau_j(t_p) \right|}
+\end{equation}
+are calculated in every step $k$ for all joints $j$. If removing a parameter would lead to a large model error, this parameter is retained.
+
+The following is a detailed description of the proposed approach, explained along the pseudo code in algorithm\,\ref{alg:ModelReductionAlgorithm}. It can be characterized as a \textit{backward stepwise selection} \cite{Volinsky1997} because starting from the full model parameters are removed successively.
+
+The algorithm begins with calculating the initial design matrix $\boldsymbol{C}_0$ for the full model (line 1). It is checked if the design matrix is of full rank, so that all parameters are identifiable. Given that the parameter estimation is to be performed directly on a process and not with an optimized trajectory, some parameters may not be identifiable. In such a case the parameters in question must be removed prior to the model reduction.
+
+If the design matrix is of full rank, a first parameter estimation with the full model needs to be carried out (line 2). Based on that the absolute and relative model errors $e_{0,j}$ and $e^*_{0,j}$ are calculated (line 3). These values will be the reference to determine if a parameter is negligible for the model.
+
+\begin{algorithm}[ht]
+\caption{Pseudo code of the model reduction algorithm.}\label{alg:ModelReductionAlgorithm}
+	\begin{algorithmic}[1]
+	%\State Load data
+	%\State Calculate design matrix $\boldsymbol{C}$
+	\State Examine rank of design matrix $\boldsymbol{C}_k$ (initially $\boldsymbol{C}_0$)
+	\State Calculate $\hat{\boldsymbol{\theta}}_{0}$ using WLS
+	\State Calculate $e_{0,j}$, $e^*_{0,j}$
+	\State Initialize $I$ and $E$
+	\For {$k =1,2,\ldots,n_i$}
+		%\State Construct design matrix with parameters $i \in I$
+		%\State Calculate $\overline{c}_i$ for $i \in I$
+		\State Calculate $\arg \min_{i} (\overline{c}_i)$ with $i \in I \wedge i \notin E$
+		\State Remove parameter $i$
+		\State Calculate $\hat{\boldsymbol{\theta}}_{k}$ using WLS
+		\State Calculate $e_{k,j}$, $e^*_{k,j}$
+		\If {$\frac{e^*_{k,j}}{e^*_{0,j}} \geq e_{\text{tol}} \text{ } \forall j$}
+			\State Add parameter $i$ to $E$
+		\Else
+			\State Remove parameter $i$ from $I$
+		\EndIf
+	\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+Sets $I$ (included) and $E$ (essential) are initialized  (line 4): Set $I$ represents the parameters which are still included in the model in a given iteration and is initialized to contain all parameters. Set $E$ contains all parameters which are indispensable for the model. The friction may be indispensable for the model if all joints perform a sufficient motion during the observed process. In this case  $E$ will include the friction parameters, otherwise set $E$ is initialized empty.
+
+The model reduction is then performed in a loop which iterates over all $n_i=35$ parameters in the model. First the design matrix needs to be constructed with the parameters defined by $I$ and $E$ (line 6). Then the parameter with the lowest sensitivity is determined using $\overline{c}_i$ from \eqref{eq:mean_Sensitivity} and removed from the model (line 7). With the resulting reduced model a parameter estimation is carried out using the WLS method and the absolute and relative model errors $e_{k,j}$ and $e^*_{k,j}$ are calculated (line 8 and 9).
+
+In a final step it needs to be determined if the removed parameter is negligible for the model (line 10). The parameter can be considered negligible if the relative model error $e^*_{k,j}$ in step $k$ is within a pre-defined tolerance margin $e_{\mathrm{tol}}$ with respect to the reference value $e^*_{0,j}$ for all joints $j$.% Removing the friction parameters may result in a reduced model which is within the error tolerance, but the robustness of the parameter estimation is negatively impacted. This can be seen in a high condition number of the reduced model which means the parameters are not equally excited and therefore poorly identified. 
+
+The advantage of the algorithm is that it removes unimportant parameters so that the model error keeps low, but since the condition number is not optimized directly its improvement may be small. Nevertheless, it has been found in several experiments that the condition number is also improved.

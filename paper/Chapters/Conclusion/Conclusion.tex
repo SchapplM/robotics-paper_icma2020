@@ -1,0 +1,12 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+
+\section{Conclusion}
+\label{sec:Conclusion}
+
+When a robot is installed in its industrial environment the working area is highly restricted and parameter identification of robot's inverse dynamic models is a challenge. Satisfactory parameter identifiability can still be expected from optimized trajectories, but the optimization procedure is time-consuming and difficult to integrate into the software of the industrial controller. Therefore, in this paper identification during the final operation of the robot with in-process trajectories is investigated, which eliminates the need for dedicated identification experiments. 
+Identifiability of the model parameters is now ensured by optimizing the composition of the model rather than the trajectory. A reduced-order model results including only those parameters that are relevant for the given in-process trajectory and parameter drift due to insufficient excitation is avoided.
+
+In validation experiments with a serial robot it is shown that even with optimal excitation not all parameters can be identified if the workspace is restricted. For a simple in process trajectory only a few model parameters are relevant and accordingly the reduced order model is clearly simpler but approximately equally good.
+
+The procedure is easy to use and requires no prior knowledge on the parameters. It can readily be integrated into the process control and requires no preparatory experiments. This makes it suitable for an industrial context.
