@@ -1,6 +1,10 @@
 % % Author M.Sc. Björn Volkmann
 
-addpath(genpath('./'));
+% % The model reduction needs to be run for process 1 and 2 prior to this
+% script to compare the reduced models to the models derived fom optimal
+% excitation
+
+addpath(genpath('../'));
 clear
 close all
 clc
@@ -172,47 +176,64 @@ tauC_vgl = transpose( reshape( C_c*theta_A, [], 6) );
 
 %Plotten der Drehmomente
 figure(1)
-subplot(3,2,1)
-plot(timeA, [tauC(1,:); tauC_vgl(1,:)])
-title('Axis 1')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
+sgtitle('Model A for Trajectory C')
+for plott = 1:6 
+    subplot(3,2,plott)
+    plot(timeA, [tauC(plott,:); tauC_vgl(plott,:)])
+    title(strcat('Joint ',num2str(plott)))
+    xlabel('time (s)')
+    ylabel('torque (Nm)')
+end
+legend('training', 'validation', 'Location','northeast')
 
-subplot(3,2,2)
-plot(timeA, [tauC(2,:); tauC_vgl(2,:)])
-title('Axis 2')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
+% subplot(3,2,2)
+% plot(timeA, [tauC(2,:); tauC_vgl(2,:)])
+% title('Axis 2')
+% xlabel('Time (s)')
+% ylabel('Torque (Nm)')
+% legend('Measurement', 'Model')
+% 
+% subplot(3,2,3)
+% plot(timeA, [tauC(3,:); tauC_vgl(3,:)])
+% title('Axis 3')
+% xlabel('Time (s)')
+% ylabel('Torque (Nm)')
+% legend('Measurement', 'Model')
+% 
+% subplot(3,2,4)
+% plot(timeA, [tauC(4,:); tauC_vgl(4,:)])
+% title('Axis 4')
+% xlabel('Time (s)')
+% ylabel('Torque (Nm)')
+% legend('Measurement', 'Model')
+% 
+% subplot(3,2,5)
+% plot(timeA, [tauC(5,:); tauC_vgl(5,:)])
+% title('Axis 5')
+% xlabel('Time (s)')
+% ylabel('Torque (Nm)')
+% legend('Measurement', 'Model')
+% 
+% subplot(3,2,6)
+% plot(timeA, [tauC(6,:); tauC_vgl(6,:)])
+% title('Axis 6')
+% xlabel('Time (s)')
+% ylabel('Torque (Nm)')
+% legend('Measurement', 'Model')
 
-subplot(3,2,3)
-plot(timeA, [tauC(3,:); tauC_vgl(3,:)])
-title('Axis 3')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
+tauC_vgl = transpose( reshape( C_c*theta_B, [], 6) );
 
-subplot(3,2,4)
-plot(timeA, [tauC(4,:); tauC_vgl(4,:)])
-title('Axis 4')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
-
-subplot(3,2,5)
-plot(timeA, [tauC(5,:); tauC_vgl(5,:)])
-title('Axis 5')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
-
-subplot(3,2,6)
-plot(timeA, [tauC(6,:); tauC_vgl(6,:)])
-title('Axis 6')
-xlabel('Time (s)')
-ylabel('Torque (Nm)')
-legend('Measurement', 'Model')
+%Plotten der Drehmomente
+figure(2)
+sgtitle('Model B for Trajectory C')
+for plott = 1:6 
+    subplot(3,2,plott)
+    plot(timeB, [tauC(plott,:); tauC_vgl(plott,:)])
+    title(strcat('Joint ',num2str(plott)))
+    xlabel('time (s)')
+    ylabel('torque (Nm)')
+end
+legend('training', 'validation', 'Location','northeast')
 
 
-rmpath(genpath('./'));
+rmpath(genpath('../'));

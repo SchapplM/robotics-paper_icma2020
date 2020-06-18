@@ -1,6 +1,6 @@
 % % Author M.Sc. Björn Volkmann
 
-addpath(genpath('./'));
+addpath(genpath('../'));
 clear
 close all
 clc
@@ -10,8 +10,8 @@ tic
 %% Parameter
 
 errorTol = 1.05;% Error Tolerance
-nAxes = 6; %Anzahl der Achsen
-nReibParam = 2; %Anzahl der Parameter des Reibmodells
+nAxes = 6; %number of joints
+nReibParam = 2; %number of friction parameters
 
 % % % which process is to be used % % %
 % process1 = Process 1 //PnP movement
@@ -77,8 +77,8 @@ fprintf('Data Loaded \n');
 %Number of parameters
 [~, numParameter] = size(C_train);
 
-%Initialization of sets E and Z
-ignoredIndex = false(1, numParameter); %set Z
+%Initialization of sets E and I
+ignoredIndex = false(1, numParameter); %set E
 %the parameter is nonnegligible = true
 %the parameter is negligible = false
 if keep_friction == true
@@ -88,12 +88,12 @@ else
     numParameter_temp = numParameter;
 end
 
-index = 1:numParameter;%set E
+index = 1:numParameter;%set I
 
 
 %arrays for the model error
-eT.ges = zeros(1, numParameter_temp+1);
-eV.ges = zeros(1, numParameter_temp+1);
+eT.ges = zeros(1, numParameter_temp+1);% Index T for the training set
+eV.ges = zeros(1, numParameter_temp+1);% Index V for the validation set
 eT.axes = zeros(6, numParameter_temp+1);
 eV.axes = zeros(6, numParameter_temp+1);
 eT.ges_rel = zeros(1, numParameter_temp+1);
@@ -164,7 +164,7 @@ Kondition.voll = cond( C_train * diag(1./sqrt(sum(C_train.^2,1))) );
 %Retry Zähler
 retry = 0;
 
-%% Modellreduktion
+%% Model Reduction
 fprintf('Start model reduction \n');
 %Modell iterativ reduzieren
 for i = 1:numParameter_temp
@@ -180,13 +180,13 @@ for i = 1:numParameter_temp
     %search for minimum
     [~, ind] = min(sens);
 
-    %Spalte der kleinsten Sensitivität aus Regressor löschen
+    %delete Parameter
     col2keep = index;%bis jetzt beibehaltene Spalten
     col2keep(ind) = [];%identifizierte Spalte entfernen
     C_train_temp = C_train(:, col2keep);
     C_val_temp = C_val(:, col2keep);
 
-    %Parameter schätzen
+    %estimate parameters
 %     WC = zeros(size(C_train_temp));
 %     for row = 1:rT
 %         WC(row,:) = w(row)*C_train_temp(row,:);
@@ -198,7 +198,7 @@ for i = 1:numParameter_temp
     
     theta = WLS_method(C_train_temp, tauT, VarianceT);
 
-    %Trainings und Validierungsfehler mit redudiertem Modell berechnen
+    %calculate model errors
     eT.axes(:, i+1) = transpose( mean( reshape( abs(tauT - C_train_temp*theta), [], 6)));
     eV.axes(:, i+1) = transpose( mean( reshape( abs(tauV - C_val_temp*theta), [], 6)));
 
@@ -213,20 +213,20 @@ for i = 1:numParameter_temp
     fprintf('Iteration: %d == Remove colomn %d with sensitivity %1.4f :', i, index(ind), sens(ind));
     testedIndex(i) = index(ind);%Abspeichern welcher index in der Iteration überprüft wurde
 
-    %Überprüfen, ob Modellreduktion für jede Achse erfolgreich ist
+    %test for successful model reduction
     success(1,i) = eV.axes_rel(1,i+1) / eV.axes_rel(1,1) <= errorTol;
     success(2,i) = eV.axes_rel(2,i+1) / eV.axes_rel(2,1) <= errorTol;
     success(3,i) = eV.axes_rel(3,i+1) / eV.axes_rel(3,1) <= errorTol;
     success(4,i) = eV.axes_rel(4,i+1) / eV.axes_rel(4,1) <= errorTol;
     success(5,i) = eV.axes_rel(5,i+1) / eV.axes_rel(5,1) <= errorTol;
     success(6,i) = eV.axes_rel(6,i+1) / eV.axes_rel(6,1) <= errorTol;
-    if any(~success(:,i)) %Wenn nicht erfolgreich
+    if any(~success(:,i)) %not successful
         
         retry = retry +1;
         fprintf('failure \\ %d\n', retry)
         ignoredIndex(ind) = true;
         
-    else %Wenn erfolgreich
+    else %successful
         
         %Wenn rel. Fehler die Grenze noch nicht überschritten hat,
         %entfernte Spalte merken
@@ -247,7 +247,7 @@ theta_red(:, i+2-retry:end) = [];
 clear ind
 
 
-%% Berechnen der Drehmomente mit maximal reduziertem Modell
+%% Calulate Modell Prediction with Reduced Model
 
 
 fprintf('%d parameters removed\n', numParameter-length(index))
@@ -256,11 +256,11 @@ fprintf('\tNOT removed columns:\t')
 fprintf('%d \t', index)
 fprintf('\n')
 
-%Berechnen der Drehmomente mit reduziertem Parameter Vektor
+%calculate torque
 tauT_vgl = C_train(:,index)*theta_red(index,end);%Trainingsset
 tauV_vgl = C_val(:,index)*theta_red(index,end);%Validierungsset
 
-%Konditionszahl der Anregung für das reduzierte Modell
+%Condition number
 Kondition.red = cond( C_train(:,index) * diag(1./sqrt(sum(C_train(:,index).^2,1))) );
 
 fprintf('Condition number of the full model: %1.2f \n', Kondition.voll)
@@ -310,186 +310,195 @@ fprintf('Plotting results ... \n');
 %Plot der Reduktion mit relativem Fehler gesamt
 figure(1)
 plot(0:i ,eT.ges_rel ,'DisplayName','Training-Error')
-title('Durchschnittlicher relativer Modellfehler gemittelt über alle Achsen')
+title('Average relativ model error')
 hold on
 plot(0:i ,eV.ges_rel ,'DisplayName','Validation-Error')
 
 legend('Location','northeast')
 ymax = ylim;
 xlabel('Iterationen')
-ylabel('Durchschnittlicher relativer Approximationsfehler (%)')
+ylabel('Durchschnittlicher relativer Approximationsfehler')
 hold off
 
 
 %Plot des absoluten Fehlerverlaufs pro Achse
 figure(2)
-subplot(3,2,1)
-plot(0:i, eT.axes(1,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 1')
-hold on
-plot(0:i, eV.axes(1,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
+sgtitle('Average Absolute Model Error')
+for plott = 1:6 
+    subplot(3,2,plott)
+    plot(0:i, eT.axes(plott,:))
+    title(strcat('Joint ',num2str(plott)))
+    hold on
+    plot(0:i, eV.axes(plott,:))
+    xlabel('iteration $k$','interpreter','latex')
+    ylabel('Absolute Model Error (Nm)')
+    hold off
+end
+legend('training', 'validation', 'Location','northeast')
 
-subplot(3,2,2)
-plot(0:i, eT.axes(2,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 2')
-hold on
-plot(0:i, eV.axes(2,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,3)
-plot(0:i, eT.axes(3,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 3')
-hold on
-plot(0:i, eV.axes(3,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,4)
-plot(0:i, eT.axes(4,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 4')
-hold on
-plot(0:i, eV.axes(4,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,5)
-plot(0:i, eT.axes(5,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 5')
-hold on
-plot(0:i, eV.axes(5,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,6)
-plot(0:i, eT.axes(6,:), 'DisplayName','Training')
-title('Durchschnittlicher Modellfehler Achse 6')
-hold on
-plot(0:i, eV.axes(6,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
+% subplot(3,2,2)
+% plot(0:i, eT.axes(2,:))%, 'DisplayName','training')
+% title('Joint 2')
+% hold on
+% plot(0:i, eV.axes(2,:))%, 'DisplayName','Validierung')
+% % legend('Location','northeast')
+% xlabel('iteration $k$','interpreter','latex')
+% ylabel('Absolute Model Error (Nm)')
+% hold off
+% 
+% subplot(3,2,3)
+% plot(0:i, eT.axes(3,:))%, 'DisplayName','Training')
+% title('Joint 3')
+% hold on
+% plot(0:i, eV.axes(3,:))%, 'DisplayName','Validierung')
+% % legend('Location','northeast')
+% xlabel('iteration $k$','interpreter','latex')
+% ylabel('Absolute Model Error (Nm)')
+% hold off
+% 
+% subplot(3,2,4)
+% plot(0:i, eT.axes(4,:))%, 'DisplayName','Training')
+% title('Joint 4')
+% hold on
+% plot(0:i, eV.axes(4,:))%, 'DisplayName','Validierung')
+% % legend('Location','northeast')
+% xlabel('iteration $k$','interpreter','latex')
+% ylabel('Absolute Model Error (Nm)')
+% hold off
+% 
+% subplot(3,2,5)
+% plot(0:i, eT.axes(5,:))%, 'DisplayName','Training')
+% title('Joint 5')
+% hold on
+% plot(0:i, eV.axes(5,:))%, 'DisplayName','Validierung')
+% % legend('Location','northeast')
+% xlabel('iteration $k$','interpreter','latex')
+% ylabel('Absolute Model Error (Nm)')
+% hold off
+% 
+% subplot(3,2,6)
+% plot(0:i, eT.axes(6,:))%, 'DisplayName','Training')
+% title('Joint 6')
+% hold on
+% plot(0:i, eV.axes(6,:))%, 'DisplayName','Validierung')
+% % legend('Location','northeast')
+% xlabel('iteration $k$','interpreter','latex')
+% ylabel('Absolute Model Error (Nm)')
+% hold off
 
 
 %Plot des relativen Fehlerverlaufs pro Achse
 figure(3)
-subplot(3,2,1)
-plot(0:i, eT.axes_rel(1,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 1')
-hold on
-plot(0:i, eV.axes_rel(1,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
+sgtitle('Relative Model Error')
+for plott = 1:6 
+    subplot(3,2,plott)
+    plot(0:i, eT.axes_rel(plott,:))
+    title(strcat('Joint ',num2str(plott)))
+    hold on
+    plot(0:i, eV.axes_rel(plott,:))
+    xlabel('iteration $k$','interpreter','latex')
+    ylabel('Relative Model Error (Nm)')
+    hold off
+end
+legend('training', 'validation', 'Location','northeast')
 
-subplot(3,2,2)
-plot(0:i, eT.axes_rel(2,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 2')
-hold on
-plot(0:i, eV.axes_rel(2,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,3)
-plot(0:i, eT.axes_rel(3,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 3')
-hold on
-plot(0:i, eV.axes_rel(3,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,4)
-plot(0:i, eT.axes_rel(4,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 4')
-hold on
-plot(0:i, eV.axes_rel(4,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,5)
-plot(0:i, eT.axes_rel(5,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 5')
-hold on
-plot(0:i, eV.axes_rel(5,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
-
-subplot(3,2,6)
-plot(0:i, eT.axes_rel(6,:), 'DisplayName','Training')
-title('Durchschnittlicher relativer Modellfehler Achse 6')
-hold on
-plot(0:i, eV.axes_rel(6,:), 'DisplayName','Validierung')
-legend('Location','northeast')
-xlabel('Iterationen')
-ylabel('Durchschnittlicher Approximationsfehler (Nm)')
-hold off
+% subplot(3,2,2)
+% plot(0:i, eT.axes_rel(2,:), 'DisplayName','Training')
+% title('Durchschnittlicher relativer Modellfehler Achse 2')
+% hold on
+% plot(0:i, eV.axes_rel(2,:), 'DisplayName','Validierung')
+% legend('Location','northeast')
+% xlabel('Iterationen')
+% ylabel('Durchschnittlicher Approximationsfehler (Nm)')
+% hold off
+% 
+% subplot(3,2,3)
+% plot(0:i, eT.axes_rel(3,:), 'DisplayName','Training')
+% title('Durchschnittlicher relativer Modellfehler Achse 3')
+% hold on
+% plot(0:i, eV.axes_rel(3,:), 'DisplayName','Validierung')
+% legend('Location','northeast')
+% xlabel('Iterationen')
+% ylabel('Durchschnittlicher Approximationsfehler (Nm)')
+% hold off
+% 
+% subplot(3,2,4)
+% plot(0:i, eT.axes_rel(4,:), 'DisplayName','Training')
+% title('Durchschnittlicher relativer Modellfehler Achse 4')
+% hold on
+% plot(0:i, eV.axes_rel(4,:), 'DisplayName','Validierung')
+% legend('Location','northeast')
+% xlabel('Iterationen')
+% ylabel('Durchschnittlicher Approximationsfehler (Nm)')
+% hold off
+% 
+% subplot(3,2,5)
+% plot(0:i, eT.axes_rel(5,:), 'DisplayName','Training')
+% title('Durchschnittlicher relativer Modellfehler Achse 5')
+% hold on
+% plot(0:i, eV.axes_rel(5,:), 'DisplayName','Validierung')
+% legend('Location','northeast')
+% xlabel('Iterationen')
+% ylabel('Durchschnittlicher Approximationsfehler (Nm)')
+% hold off
+% 
+% subplot(3,2,6)
+% plot(0:i, eT.axes_rel(6,:), 'DisplayName','Training')
+% title('Durchschnittlicher relativer Modellfehler Achse 6')
+% hold on
+% plot(0:i, eV.axes_rel(6,:), 'DisplayName','Validierung')
+% legend('Location','northeast')
+% xlabel('Iterationen')
+% ylabel('Durchschnittlicher Approximationsfehler (Nm)')
+% hold off
 
 
 %Plotten der Drehmomente
 figure(4)
-subplot(3,2,1)
-plot(timeV, [tauV(1,:); tauV_vgl(1,:)])
-title('Vergleich Messung/LS Achse 1')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
+sgtitle('Model Prediction')
+for plott = 1:6 
+    subplot(3,2,plott)
+    plot(timeV, [tauV(plott,:); tauV_vgl(plott,:)])
+    title(strcat('Joint ',num2str(plott)))
+    xlabel('time (s)')
+    ylabel('torque (Nm)')
+end
+legend('measurement', 'model')
 
-subplot(3,2,2)
-plot(timeV, [tauV(2,:); tauV_vgl(2,:)])
-title('Vergleich Messung/LS Achse 2')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
-
-subplot(3,2,3)
-plot(timeV, [tauV(3,:); tauV_vgl(3,:)])
-title('Vergleich Messung/LS Achse 3')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
-
-subplot(3,2,4)
-plot(timeV, [tauV(4,:); tauV_vgl(4,:)])
-title('Vergleich Messung/LS Achse 4')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
-
-subplot(3,2,5)
-plot(timeV, [tauV(5,:); tauV_vgl(5,:)])
-title('Vergleich Messung/LS Achse 5')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
-
-subplot(3,2,6)
-plot(timeV, [tauV(6,:); tauV_vgl(6,:)])
-title('Vergleich Messung/LS Achse 6')
-xlabel('Zeit (s)')
-ylabel('Drehmoment (Nm)')
-legend('Messung', 'LS')
+% subplot(3,2,2)
+% plot(timeV, [tauV(2,:); tauV_vgl(2,:)])
+% title('Vergleich Messung/LS Achse 2')
+% xlabel('Zeit (s)')
+% ylabel('Drehmoment (Nm)')
+% legend('Messung', 'LS')
+% 
+% subplot(3,2,3)
+% plot(timeV, [tauV(3,:); tauV_vgl(3,:)])
+% title('Vergleich Messung/LS Achse 3')
+% xlabel('Zeit (s)')
+% ylabel('Drehmoment (Nm)')
+% legend('Messung', 'LS')
+% 
+% subplot(3,2,4)
+% plot(timeV, [tauV(4,:); tauV_vgl(4,:)])
+% title('Vergleich Messung/LS Achse 4')
+% xlabel('Zeit (s)')
+% ylabel('Drehmoment (Nm)')
+% legend('Messung', 'LS')
+% 
+% subplot(3,2,5)
+% plot(timeV, [tauV(5,:); tauV_vgl(5,:)])
+% title('Vergleich Messung/LS Achse 5')
+% xlabel('Zeit (s)')
+% ylabel('Drehmoment (Nm)')
+% legend('Messung', 'LS')
+% 
+% subplot(3,2,6)
+% plot(timeV, [tauV(6,:); tauV_vgl(6,:)])
+% title('Vergleich Messung/LS Achse 6')
+% xlabel('Zeit (s)')
+% ylabel('Drehmoment (Nm)')
+% legend('Messung', 'LS')
 
 toc
-rmpath(genpath('./'));
+rmpath(genpath('../'));
