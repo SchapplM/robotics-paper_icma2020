@@ -1,3 +1,5 @@
+% % Author M.Sc. Björn Volkmann
+
 function theta = WLS_method(C, y, variance)
 
 [N, ~] = size(y);%number of measurement points

@@ -1,3 +1,5 @@
+% % Author M.Sc. Björn Volkmann
+
 addpath(genpath('./'));
 clear
 close all
