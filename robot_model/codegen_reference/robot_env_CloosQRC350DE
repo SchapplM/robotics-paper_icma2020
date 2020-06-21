@@ -1,0 +1,26 @@
+# Industrieroboter, Cloos QRC 350 (6 FG)
+# Bodenmontage, Differentialgetriebe in Handachsen
+
+robot_name := "CloosQRC350DE":
+
+NJ := 6:
+NQJ := 6:
+qoffset := Matrix(6,1,[0,-Pi/2,0,0,0,Pi]):
+alpha := Matrix(6,1,[0,-Pi/2,0,-Pi/2,Pi/2,-Pi/2]):
+d := Matrix(6,1,[L1,0,0,L5,0,L6]):
+a := Matrix(6,1,[0,L2,L3,L4,0,0]):
+v := Matrix(6,1,[0, 1, 2, 3, 4, 5]):
+b := Matrix(6,1,[0, 0, 0, 0, 0, 0]):
+beta := Matrix(6,1,[0, 0, 0, 0, 0, 0]):
+theta := Matrix(NJ,1,[rho1(t),qJ_t(2,1),qJ_t(3,1),qJ_t(4,1),qJ_t(5,1),rho6(t)]) + qoffset:
+
+# Allgemeine Winkel (für Gelenkkoordinaten, die nicht in theta-Richtung zeigen)
+kintmp_t := Matrix(2, 1, [rho1(t), rho6(t)]);
+kintmp_s := Matrix(2, 1, [rho1s, rho6s]);
+
+# Schwerkraft in nur eine Richtung
+g_world := <0;0;g3>:
+
+# Alles soll schnell gehen
+codegen_opt := 1:
+simplify_options := Vector(10,0): # Keine Vereinfachungen.
