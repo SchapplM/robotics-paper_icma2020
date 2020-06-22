@@ -1,9 +1,7 @@
 % Validate the generated model from SA Jonas Diekmeyer (main.mw) with a
 % second implementation from [1]
 % Use different test scenarios to isolate potential errors in the model
-% 
-% Preliminary result:
-% * test case 3 not working yet
+% Result: Different implementations give the same result
 % 
 % Dependencies:
 % * https://github.com/SchapplM/matlab_toolbox
@@ -32,10 +30,13 @@ addpath(fullfile(this_path, '..', 'matlabfcn_CloosQRC350DE'));
 addpath(fullfile(this_path, '..', 'matlabfcn_CloosQRC350OL'));
 
 % test scenarios:
+% 0: kinematics only
 % 1: statics only
 % 2: dynamics only, only inertia parameters. CoM zero
 % 3: dynamics only, no inertia (around CoM), but CoM unequal to zero
-for ts = 1:3
+% 4: statics and dynamics. All parameters set.
+% 5: drive train inertia set
+for ts = 0:5
   %% Define Kinematics Parameters and Test Settings
   n = 100;
   N = 6;
@@ -54,13 +55,13 @@ for ts = 1:3
   elseif ts == 2
     % alle velocities and accelerations set unequal to zero
   elseif ts == 3
-    % Erste Konfigurationen nur mit Beschleunigung testen
+    % test first configurations with only one acceleration
     QD(1:N+1,:) = 0;
     QDD(1,:) = 0;
     QDD(2:N+1,1:N) = eye(N);
   end
 
-  % kinematic parameters of the robot
+  % Kinematic parameters of the robot
   L1 = 640*1e-3;
   L2 = 250*1e-3;
   L3 = 630*1e-3;
@@ -90,16 +91,10 @@ for ts = 1:3
   rc_all_sdh = 0.3*(0.5-rand(N,3)); % All center of mass coordinates in body frames
 
   m = rand(N,1); % masses of all links (are positive due to rand() function)
-  if ts == 3
-    m = 1*ones(N,1);
-    m([1 3:end]) = 0;
-  end
 
   % Set parameters to zero with assumed symmetries (see Maple worksheet)
   % Components refer to SDH frames
   % rC2y=0,rC4x=0,rC4z=0,rC5x=0,rC5y=0,rC6x=0,rC6y=0
-  rc_all_sdh(1,1) = 0;
-  rc_all_sdh(1,3) = 0;
   rc_all_sdh(2,2) = 0;
   rc_all_sdh(4,1) = 0;
   rc_all_sdh(4,3) = 0;
@@ -109,10 +104,6 @@ for ts = 1:3
   rc_all_sdh(6,2) = 0;
   if ts == 2
     rc_all_sdh(1:6,:) = 0;
-  end
-  if ts == 3
-    rc_all_sdh(1:6,:) = 0;
-    rc_all_sdh(2,3) = 0.1;
   end
   Ic_pa = rand(N,3); % inertia of all links around their center of mass in principal axes
   Ic_all_sdh = NaN(N,6); % inertia of all links around their center of mass in body frame
@@ -153,12 +144,15 @@ for ts = 1:3
 
   % Inertia of motor and gear
   JA_all = zeros(N,1);
-
+  if ts == 5
+    JA_all = rand(N,1);
+  end
+  
   % friction parameters
   fc = zeros(N,1);
   fv = zeros(N,1);
 
-  % Initialize robot class
+  % Initialize robot class for plotting the robot in case of error
   PS = struct('beta',  NaN(N,1), 'b', NaN(N,1), ...
               'alpha', NaN(N,1), 'a', NaN(N,1), ...
               'theta', NaN(N,1), 'd', NaN(N,1), ...
@@ -177,6 +171,7 @@ for ts = 1:3
   RS.update_dynpar1([NaN;m], [NaN(1,3);rc_all_mdh], [NaN(1,6);Ic_all_mdh_plot]);
 
   %% Test Kinematics
+  if ts == 0
   for i = 1:n
     q = Q(i,:)';
     % forward kinematics from reference implementation [1]
@@ -211,9 +206,10 @@ for ts = 1:3
     end
   end
   fprintf('Scenario %d: Tested the inverse kinematics for %d random configurations\n', ts, n);
-
+  continue
+  end
   %% Test Dynamics with different implementations
-  mpv = Minimalparameter_fcn(pkin, m, rc_all_sdh, Ic_all_sdh, JA_all, fc, fv)';
+  mpv = Minimalparameter_fcn(pkin, m, rc_all_sdh, If_all_sdh, JA_all, fc, fv)';
   for i = 1:n
     q = Q(i,:)';
     qD = QD(i,:)';
@@ -221,15 +217,16 @@ for ts = 1:3
 
     % Test against second implementation
     tau_mdl1 = InvDyn_fcn(q, qD, qDD, g, pkin, m, rc_all_sdh, Ic_all_sdh, JA_all)';
-    tau_mdl2 = CloosQRC350DE_invdynJ_fixb_slag_vp2(q, qD, qDD, [0;0;-g], pkin, [NaN;m], ...
-      [NaN(1,3);mrc_all_mdh], [NaN(1,6);If_all_mdh]);
-    tau_test_mdl2 = tau_mdl2 - tau_mdl1;
-    if any(abs(tau_test_mdl2) > 1e-10)
-      disp(tau_mdl2');
-      disp(tau_mdl1');
-      error('Joint torques do not match with second implementation for config. %d', i);
+    if ts ~= 5 % only test without drive train inertia
+      tau_mdl2 = CloosQRC350DE_invdynJ_fixb_slag_vp2(q, qD, qDD, [0;0;-g], pkin, [NaN;m], ...
+        [NaN(1,3);mrc_all_mdh], [NaN(1,6);If_all_mdh]);
+      tau_test_mdl2 = tau_mdl2 - tau_mdl1;
+      if any(abs(tau_test_mdl2) > 1e-10)
+        disp(tau_mdl2');
+        disp(tau_mdl1');
+        error('Joint torques do not match with second implementation for config. %d', i);
+      end
     end
-
     % Test against regressor form
     Phi = RegressorMatrix(qDD', qD', g, 1000, pkin, q');
     tau_from_reg = Phi * mpv;
@@ -279,13 +276,15 @@ for ts = 1:3
       tau_j = InvDyn_fcn(q, zeros(N,1), qDD_test, 0, pkin, m, rc_all_sdh, Ic_all_sdh, JA_all)';
       MM_fromfcn(:,j) = tau_j;
     end
-    % inertia matrix from [1]
-    MM_mdl2 = CloosQRC350DE_inertiaJ_slag_vp2(q, pkin, [NaN;m], ...
-      [NaN(1,3);mrc_all_mdh], [NaN(1,6);If_all_mdh]);
-    % compare
-    test_MM_mdl2 = MM_mdl2 - MM_fromfcn;
-    if any(abs(test_MM_mdl2(:)) > 1e-10)
-      error('Inertia matrix does not match with reference implementation for config. %d', i);
+    % inertia matrix from [1], second implementation
+    if ts ~= 5 % only test without drive train inertia
+      MM_mdl2 = CloosQRC350DE_inertiaJ_slag_vp2(q, pkin, [NaN;m], ...
+        [NaN(1,3);mrc_all_mdh], [NaN(1,6);If_all_mdh]);
+      % compare
+      test_MM_mdl2 = MM_mdl2 - MM_fromfcn;
+      if any(abs(test_MM_mdl2(:)) > 1e-10)
+        error('Inertia matrix does not match with reference implementation for config. %d', i);
+      end
     end
     test_MM_reg = MM_fromreg - MM_fromfcn;
     if any(abs(test_MM_reg(:)) > 1e-10)
