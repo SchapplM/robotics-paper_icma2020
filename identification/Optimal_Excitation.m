@@ -167,6 +167,8 @@ eP1_B.axes_rel = (rP1/6) * eP1_B.axes(:, 1) ./ transpose( sum(tauP1P1) );%relati
 eP2_B.axes =  transpose( mean( reshape( abs(tauP2 - C_P2*theta_B), [], 6)));%absolute
 eP2_B.axes_rel = (rP2/6) * eP2_B.axes(:, 1) ./ transpose( sum(tauP2P2) );%relative
 
+%save results
+save('optimal_exitation', 'eA_A', 'eC_A' ,'eB_B', 'eC_B' ,'eP1_A', 'eP2_A' ,'eP1_B', 'eP2_B', 'theta_A', 'theta_B', 'sigma_A', 'sigma_B');
 
 %% Ploting
 
