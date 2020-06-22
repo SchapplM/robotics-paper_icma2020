@@ -3,15 +3,15 @@
 clear;
 
 % Load Data
-
+addpath(genpath('../'));
 l = [640;250;630;196;805;100]/1000; % Kinematikparameter
-load('Messdaten_Validierung_Square_Nr-1.mat');
+load('Experimental Validation/Joint Data Process 2/Process2_desired.mat');
 EE_soll = posEE(l,deg2rad(deg_q))*1000;
 
-load('Messdaten_ohneModell_Square_Nr-1.mat');
+load('Experimental Validation/Joint Data Process 2/Process2_withoutModel.mat');
 EE_ohneModell = posEE(l,deg2rad(deg_q))*1000;
 
-load('Messdaten_ProzessModell-0.8_Square_Nr-1.mat');
+load('Experimental Validation/Joint Data Process 2/Process2_processModel.mat');
 EE_mitModell = posEE(l,deg2rad(deg_q))*1000;
 
 %% Farben definieren
@@ -153,3 +153,4 @@ saveas(f,strcat(Dateiname,'.pdf'))
 % system(['gswin64c.exe -dNOPAUSE -dBATCH -dNOCACHE -dEPSCrop -sDEVICE=pdfwrite -sOutputFile=',filename,'.pdf ',filename,'_tmp.eps']);
 % system(['gswin64c.exe -dNOPAUSE -dBATCH -dNOCACHE -r300 -dEPSCrop -sDEVICE=png16m   -sOutputFile=',filename,'.png ',filename,'_tmp.eps']);
 
+rmpath(genpath('./'));
