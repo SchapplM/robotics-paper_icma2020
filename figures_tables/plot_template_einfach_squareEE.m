@@ -1,7 +1,7 @@
-% Template for figure formatting
-% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
-
 % This script creates Figure 4
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 % clc;
 clear;
