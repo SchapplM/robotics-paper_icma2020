@@ -49,8 +49,8 @@ Matlab scripts for re-creating the data of the tables are located in directory `
 * Tab. IV: `Create_Table_ParametersProcess.m`
 * Tab. V: `Create_Table_errorProcessOnProcess.m`
 * Tab. VI: `Create_Table_errorModelAonProcess.m` (and not presented in the paper for model B `Create_Table_errorModelBonProcess.m`)
-* Tab. VII: `create_table_ControllError_comparison_Process1.m` (and not presented in the paper for process 2 `create_table_ControllError_comparison_Process2.m`
-* Fig. 4: `plot_template_einfach_squareEE.m`
+* Tab. VII: `Create_table_ControllError_comparison_Process1.m` (and not presented in the paper for process 2 `Create_table_ControllError_comparison_Process2.m`
+* Fig. 4: `Create_Figure_squareEE.m`
 
 ### Robot Model
 
