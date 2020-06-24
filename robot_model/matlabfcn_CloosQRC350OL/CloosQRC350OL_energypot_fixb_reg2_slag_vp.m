@@ -16,8 +16,8 @@
 %   inertial parameter regressor of Potential energy
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -35,28 +35,20 @@ assert(isreal(pkin) && all(size(pkin) == [6 1]), ...
 %% Symbolic Calculation
 % From energy_potential_fixb_regressor_matlab.m
 % OptimizationMode: 2
-% StartTime: 2020-06-20 08:18:55
-% EndTime: 2020-06-20 08:18:55
-% DurationCPUTime: 0.14s
-% Computational Cost: add. (61->25), mult. (57->28), div. (0->0), fcn. (59->10), ass. (0->20)
-t80 = g(3) * pkin(1);
-t66 = qJ(2) + qJ(3);
-t63 = sin(t66);
-t68 = sin(qJ(5));
-t71 = cos(qJ(5));
-t64 = cos(t66);
-t75 = t64 * cos(qJ(4));
-t58 = -t63 * t71 - t68 * t75;
-t79 = g(3) * t58;
-t73 = cos(qJ(2));
-t77 = t73 * pkin(3) + pkin(1);
-t60 = t64 * pkin(4) - t63 * pkin(5) + t77;
-t78 = g(3) * t60;
-t76 = t64 * sin(qJ(4));
-t74 = g(3) * t76;
-t70 = cos(qJ(6));
-t67 = sin(qJ(6));
-t62 = g(3) * t63;
-t59 = -t63 * t68 + t71 * t75;
-t1 = [0, 0, 0, 0, 0, 0, 0, 0, -g(3), -t80, 0, 0, 0, 0, 0, 0, -g(3) * t73, g(3) * sin(qJ(2)), 0, -t80, 0, 0, 0, 0, 0, 0, -g(3) * t64, t62, 0, -g(3) * t77, 0, 0, 0, 0, 0, 0, -g(3) * t75, t74, t62, -t78, 0, 0, 0, 0, 0, 0, -g(3) * t59, -t79, -t74, -t78, 0, 0, 0, 0, 0, 0, -g(3) * (-t59 * t70 + t67 * t76), -g(3) * (t59 * t67 + t70 * t76), -t79, -g(3) * (t58 * pkin(6) + t60);];
+% StartTime: 2020-06-23 22:02:20
+% EndTime: 2020-06-23 22:02:20
+% DurationCPUTime: 0.06s
+% Computational Cost: add. (40->17), mult. (32->15), div. (0->0), fcn. (29->6), ass. (0->12)
+t63 = g(3) * pkin(1);
+t58 = qJ(2) + qJ(3);
+t55 = sin(t58);
+t56 = cos(t58);
+t51 = -t56 * cos(qJ(4)) * sin(qJ(5)) - t55 * cos(qJ(5));
+t62 = g(3) * t51;
+t59 = cos(qJ(2));
+t60 = t59 * pkin(3) + pkin(1);
+t52 = t56 * pkin(4) - t55 * pkin(5) + t60;
+t61 = g(3) * t52;
+t54 = g(3) * t55;
+t1 = [0, 0, 0, 0, 0, 0, 0, 0, -g(3), -t63, 0, 0, 0, 0, 0, 0, -g(3) * t59, 0, 0, -t63, 0, 0, 0, 0, 0, 0, -g(3) * t56, t54, 0, -g(3) * t60, 0, 0, 0, 0, 0, 0, 0, 0, t54, -t61, 0, 0, 0, 0, 0, 0, 0, -t62, 0, -t61, 0, 0, 0, 0, 0, 0, 0, 0, -t62, -g(3) * (t51 * pkin(6) + t52);];
 U_reg = t1;

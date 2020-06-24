@@ -32,7 +32,7 @@ CloosQRC350OL
 ## NMPVFIXB
 
 ```
-36
+19
 ```
 
 ## NMPVFLOATB
@@ -62,15 +62,15 @@ pkin=[L1,L2,L3,L4,L5,L6]';
 ## NTAUJFIXBREGNN
 
 ```
-139
+63
 ```
 
 ## VERSIONINFO
 
 ```
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 ```
@@ -121,7 +121,7 @@ pkin=[L1,L2,L3,L4,L5,L6]';
 ## INPUT_MDPFIXB
 
 ```
-% MDP [36x1]
+% MDP [19x1]
 %   Minimal dynamic parameter vector (fixed base model)
 %   see CloosQRC350OL_convert_par2_MPV_fixb.m
 ```

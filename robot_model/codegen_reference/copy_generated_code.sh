@@ -11,6 +11,8 @@ mdlext="DE OL"
 for ext in $mdlext; do
   echo "Kopiere Code für CloosQRC350$ext"
   mkdir -p ../matlabfcn_CloosQRC350${ext}
+  mkdir -p ../testfcn_CloosQRC350${ext}
+  cp -u $maplerepopath/codeexport/CloosQRC350${ext}/testfcn/*.* ../testfcn_CloosQRC350${ext}
   cp -u $maplerepopath/codeexport/CloosQRC350${ext}/matlabfcn/*.* ../matlabfcn_CloosQRC350${ext}
   cp -u $maplerepopath/codeexport/CloosQRC350${ext}/tmp/robot*.sh ../matlabfcn_CloosQRC350${ext}
 done

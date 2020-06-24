@@ -22,8 +22,8 @@
 %   Potential energy
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-19 21:40
-% Revision: caa0dbda1e8a16d11faaa29ba3bbef6afcd619f7 (2020-05-25)
+% Datum: 2020-06-23 21:15
+% Revision: 3f22bf868ffa24e21e77a0fe3b46e78b2d6fdc1f (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -45,29 +45,18 @@ assert(isreal(rSges) && all(size(rSges) == [7,3]), ...
 
 %% Symbolic Calculation
 % From energy_potential_fixb_worldframe_par1_matlab.m
-% OptimizationMode: 1
-% StartTime: 2020-06-19 21:37:23
-% EndTime: 2020-06-19 21:37:24
-% DurationCPUTime: 0.05s
-% Computational Cost: add. (69->37), mult. (69->42), div. (0->0), fcn. (59->10), ass. (0->20)
-t7 = cos(qJ(2));
-t9 = sin(qJ(2));
-t14 = t7 * pkin(3);
-t15 = qJ(2) + qJ(3);
-t16 = cos(t15);
-t18 = sin(t15);
-t23 = t16 * pkin(4);
-t24 = t18 * pkin(5);
-t25 = cos(qJ(4));
-t26 = t16 * t25;
-t28 = sin(qJ(4));
-t29 = t16 * t28;
-t35 = cos(qJ(5));
-t37 = sin(qJ(5));
-t39 = -t18 * t37 + t26 * t35;
-t43 = -t18 * t35 - t26 * t37;
-t51 = pkin(7) * qJ(5) - qJ(6);
-t52 = cos(t51);
-t54 = sin(t51);
-t65 = -m(1) * g(3) * rSges(1,3) - m(2) * g(3) * (pkin(1) + rSges(2,3)) - m(3) * g(3) * (t7 * rSges(3,1) - t9 * rSges(3,2) + pkin(1)) - m(4) * g(3) * (t16 * rSges(4,1) - t18 * rSges(4,2) + pkin(1) + t14) - m(5) * g(3) * (t26 * rSges(5,1) - t29 * rSges(5,2) - t18 * rSges(5,3) + pkin(1) + t14 + t23 - t24) - m(6) * g(3) * (t39 * rSges(6,1) + t43 * rSges(6,2) + t29 * rSges(6,3) + pkin(1) + t14 + t23 - t24) - m(7) * g(3) * (t43 * pkin(6) + t23 - t24 + t14 + pkin(1) + (-t29 * t54 - t39 * t52) * rSges(7,1) + (t29 * t52 - t39 * t54) * rSges(7,2) + t43 * rSges(7,3));
-U = t65;
+% OptimizationMode: 2
+% StartTime: 2020-06-23 21:01:18
+% EndTime: 2020-06-23 21:01:18
+% DurationCPUTime: 0.14s
+% Computational Cost: add. (42->21), mult. (49->21), div. (0->0), fcn. (13->7), ass. (0->9)
+t28 = -m(7) - m(6);
+t30 = m(5) - t28;
+t31 = m(4) + t30;
+t19 = (pkin(6) + rSges(7,3)) * m(7) + m(6) * rSges(6,2);
+t29 = t28 * pkin(5) - (pkin(5) + rSges(5,3)) * m(5) - m(4) * rSges(4,2) - t19 * cos(qJ(5));
+t23 = cos(qJ(3));
+t20 = sin(qJ(3));
+t18 = -t19 * sin(qJ(5)) * cos(qJ(4)) + m(4) * rSges(4,1) + t30 * pkin(4);
+t1 = -g(3) * ((t31 * pkin(3) + m(3) * rSges(3,1) + t18 * t23 + t29 * t20) * cos(qJ(2)) + m(2) * rSges(2,3) + (-t18 * t20 + t29 * t23) * sin(qJ(2)) + (m(2) + m(3) + t31) * pkin(1));
+U = t1;

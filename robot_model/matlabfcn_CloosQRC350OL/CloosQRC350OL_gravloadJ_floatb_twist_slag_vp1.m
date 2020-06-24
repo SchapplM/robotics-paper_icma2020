@@ -22,8 +22,8 @@
 %   joint torques required to compensate gravitation load
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -46,35 +46,28 @@ assert(isreal(rSges) && all(size(rSges) == [7,3]), ...
 %% Symbolic Calculation
 % From gravload_joint_floatb_twist_par1_matlab.m
 % OptimizationMode: 2
-% StartTime: 2020-06-20 08:00:26
-% EndTime: 2020-06-20 08:00:27
-% DurationCPUTime: 0.44s
-% Computational Cost: add. (164->52), mult. (196->82), div. (0->0), fcn. (194->10), ass. (0->27)
-t35 = pkin(6) + rSges(7,3);
-t16 = sin(qJ(6));
-t20 = cos(qJ(6));
-t34 = -rSges(7,1) * t20 + rSges(7,2) * t16;
-t15 = qJ(2) + qJ(3);
-t13 = sin(t15);
-t14 = cos(t15);
-t21 = cos(qJ(5));
-t17 = sin(qJ(5));
-t22 = cos(qJ(4));
-t28 = t17 * t22;
-t7 = t13 * t28 - t14 * t21;
-t26 = t21 * t22;
-t8 = -t13 * t26 - t14 * t17;
-t33 = t8 * rSges(6,1) + t7 * rSges(6,2);
-t19 = sin(qJ(2));
-t32 = t19 * pkin(3);
-t18 = sin(qJ(4));
-t29 = t16 * t18;
-t27 = t18 * t20;
-t25 = (-t13 * t27 + t8 * t16) * rSges(7,2) + (-t13 * t29 - t8 * t20) * rSges(7,1) + t35 * t7;
-t24 = -t14 * pkin(5) - t32;
-t23 = (m(4) * rSges(4,1) - m(5) * (-rSges(5,1) * t22 - pkin(4)) - m(6) * (-rSges(6,3) * t18 - pkin(4)) + m(7) * pkin(4)) * t13;
-t11 = t13 * t18 * rSges(5,2);
-t10 = -t13 * t17 + t14 * t26;
-t9 = -t13 * t21 - t14 * t28;
-t1 = [0, (-m(3) * (-t19 * rSges(3,1) - cos(qJ(2)) * rSges(3,2)) - m(4) * (-t14 * rSges(4,2) - t32) - m(5) * (-t14 * rSges(5,3) + t11 + t24) - m(6) * (t24 + t33) - m(7) * (t24 + t25) + t23) * g(3), (-m(5) * t11 - m(6) * t33 - m(7) * t25 + (m(4) * rSges(4,2) + m(5) * rSges(5,3) + (m(5) + m(6) + m(7)) * pkin(5)) * t14 + t23) * g(3), ((m(5) * rSges(5,2) - m(6) * rSges(6,3) - m(7) * (t16 * rSges(7,1) + t20 * rSges(7,2))) * t22 + (m(5) * rSges(5,1) - m(6) * (-rSges(6,1) * t21 + rSges(6,2) * t17) - m(7) * (t35 * t17 - t34 * t21)) * t18) * g(3) * t14, (-m(6) * (t9 * rSges(6,1) - t10 * rSges(6,2)) - m(7) * (-t35 * t10 + t34 * t9)) * g(3), -m(7) * g(3) * ((t10 * t16 + t14 * t27) * rSges(7,1) + (t10 * t20 - t14 * t29) * rSges(7,2))];
+% StartTime: 2020-06-23 21:56:05
+% EndTime: 2020-06-23 21:56:05
+% DurationCPUTime: 0.22s
+% Computational Cost: add. (79->23), mult. (94->31), div. (0->0), fcn. (77->7), ass. (0->20)
+t24 = pkin(6) + rSges(7,3);
+t13 = cos(qJ(4));
+t8 = qJ(2) + qJ(3);
+t7 = cos(t8);
+t19 = t7 * cos(qJ(5));
+t6 = sin(t8);
+t9 = sin(qJ(5));
+t21 = t6 * t9;
+t4 = t13 * t21 - t19;
+t23 = t24 * t4;
+t22 = pkin(4) * t6;
+t11 = sin(qJ(2));
+t20 = pkin(3) * t11;
+t18 = -pkin(5) * t7 - t22;
+t17 = -rSges(4,1) * t6 - rSges(4,2) * t7;
+t16 = -t22 + (-pkin(5) - rSges(5,3)) * t7;
+t15 = t18 - t20;
+t14 = (-m(6) * rSges(6,2) - m(7) * t24) * g(3);
+t2 = t4 * rSges(6,2);
+t1 = [0, (m(3) * t11 * rSges(3,1) - m(4) * (t17 - t20) - m(5) * (t16 - t20) - m(6) * (t15 + t2) - m(7) * (t15 + t23)) * g(3), (-m(4) * t17 - m(5) * t16 - m(6) * (t18 + t2) - m(7) * (t18 + t23)) * g(3), t9 * t7 * sin(qJ(4)) * t14, (-t13 * t19 + t21) * t14, 0];
 taug = t1(:);

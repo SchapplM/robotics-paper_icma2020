@@ -18,12 +18,12 @@
 %   columns: xx, yy, zz, xy, xz, yz (see inertial_parameters_convert_par1_par2.m)
 % 
 % Output:
-% MPV [36x1]
+% MPV [19x1]
 %   base parameter vector (minimal parameter vector)
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -43,15 +43,16 @@ assert(isreal(Ifges) && all(size(Ifges) == [7 6]), ...
 
 %% Symbolic Calculation
 % From minimal_parameter_vector_fixb_matlab.m
-t94 = (pkin(6) * m(7));
-t83 = (m(5) + m(6) + m(7));
-t82 = (m(4) + t83);
-t81 = pkin(3) ^ 2 * t82;
-t93 = (-Ifges(3,2) - t81);
-t92 = 2 * pkin(5) * mrSges(5,3) + Ifges(5,2);
-t91 = Ifges(7,2) + (2 * mrSges(7,3) + t94) * pkin(6);
-t90 = -pkin(5) * t83 - mrSges(5,3);
-t88 = (pkin(4) ^ 2);
-t87 = pkin(5) ^ 2;
-t1 = [Ifges(2,3) + Ifges(4,2) + t88 * t83 + pkin(2) ^ 2 * (m(3) + t82) - t93; Ifges(3,1) + t93; Ifges(3,4); -pkin(3) * mrSges(4,3) + Ifges(3,5); Ifges(3,6); Ifges(3,3) + t81; pkin(3) * t82 + mrSges(3,1); mrSges(3,2); Ifges(4,1) - Ifges(4,2) + (t87 - t88) * t83 + t92; t90 * pkin(4) + Ifges(4,4); Ifges(4,5); Ifges(4,6); Ifges(4,3) + (t87 + t88) * t83 + t92; pkin(4) * t83 + mrSges(4,1); mrSges(4,2) - t90; Ifges(5,1) + Ifges(6,2) - Ifges(5,2); Ifges(5,4); Ifges(5,5); Ifges(5,6); Ifges(5,3) + Ifges(6,2); mrSges(5,1); mrSges(5,2) - mrSges(6,3); Ifges(6,1) - Ifges(6,2) + t91; Ifges(6,4); Ifges(6,5); Ifges(6,6); Ifges(6,3) + t91; mrSges(6,1); mrSges(6,2) + mrSges(7,3) + t94; Ifges(7,1) - Ifges(7,2); Ifges(7,4); Ifges(7,5); Ifges(7,6); Ifges(7,3); mrSges(7,1); mrSges(7,2);];
-MPV = t1;
+t17 = (pkin(6) * m(7));
+t5 = (m(5) + m(6) + m(7));
+t16 = (t5 * pkin(5));
+t4 = m(4) + t5;
+t1 = t4 * pkin(3) ^ 2;
+t15 = -Ifges(3,2) - t1;
+t3 = (t5 * pkin(4) ^ 2);
+t14 = (-Ifges(4,2) - t3);
+t13 = Ifges(5,2) + (2 * mrSges(5,3) + t16) * pkin(5);
+t12 = Ifges(7,2) + (2 * mrSges(7,3) + t17) * pkin(6);
+t11 = -mrSges(5,3) - t16;
+t2 = [(m(3) + t4) * pkin(2) ^ 2 + Ifges(2,3) - t14 - t15; Ifges(3,1) + t15; -pkin(3) * mrSges(4,3) + Ifges(3,5); t1 + Ifges(3,3); t4 * pkin(3) + mrSges(3,1); Ifges(4,1) + t13 + t14; t11 * pkin(4) + Ifges(4,4); Ifges(4,5); Ifges(4,6); Ifges(4,3) + t3 + t13; t5 * pkin(4) + mrSges(4,1); mrSges(4,2) - t11; Ifges(5,1) - Ifges(5,2) + Ifges(6,2); Ifges(5,3) + Ifges(6,2); Ifges(6,1) - Ifges(6,2) + t12; Ifges(6,3) + t12; mrSges(6,2) + mrSges(7,3) + t17; Ifges(7,1) - Ifges(7,2); Ifges(7,3);];
+MPV = t2;
