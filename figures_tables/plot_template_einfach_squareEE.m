@@ -1,6 +1,8 @@
 % Template for figure formatting
 % (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
+% This script creates Figure 4
+
 % clc;
 clear;
 
