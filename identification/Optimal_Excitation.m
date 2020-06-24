@@ -1,8 +1,9 @@
-% % Author M.Sc. Björn Volkmann
-
-% % The model reduction needs to be run for process 1 and 2 prior to this
+% The model reduction needs to be run for process 1 and 2 prior to this
 % script to compare the reduced models to the models derived fom optimal
 % excitation
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 addpath(genpath('../'));
 clear

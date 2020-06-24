@@ -1,18 +1,26 @@
-% This skript creates Table IV
+% This script creates Table IV
 %
-% The skript Model_Reduction.m must be run for both precesses to create
+% The script Model_Reduction.m must be run for both precesses to create
 % the results in ModelReduction_process1.mat and ModelReduction_process2.mat
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 fileID1 = fopen('Table_ParametersProcess.tex', 'w');
 
 addpath(genpath('../'));
 %load results of model reduction
+if ~exist('ModelReduction_process1.mat', 'file')
+  error('Run Model_Reduction.m for process 1 first!');
+end
 load('ModelReduction_process1.mat');
 theta_P1 = theta_red;
 
+if ~exist('ModelReduction_process2.mat', 'file')
+  error('Run Model_Reduction.m for process 2 first!');
+end
 load('ModelReduction_process2.mat');
 theta_P2 = theta_red;
-
 
 fprintf(fileID1, '      & \\multicolumn{2}{c||}{Process 1} & \\multicolumn{2}{c|}{Process 2}		\\\\ \\hline \n');
 fprintf(fileID1, '$i$     & $\\hat{\\theta}_{0,i}$ & $\\hat{\\theta}_{\\text{r},i}$ & $\\hat{\\theta}_{0,i}$ & $\\hat{\\theta}_{\\text{r},i}$ \\\\ \\hline \n');
@@ -40,3 +48,4 @@ end
 fclose('all');
 
 rmpath(genpath('../'));
+fprintf('Created the file Table_ParametersProcess.tex for Tab. IV.\n');

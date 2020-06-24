@@ -1,3 +1,5 @@
+% Template for figure formatting
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 % clc;
 clear;

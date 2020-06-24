@@ -1,3 +1,17 @@
+% Return end effector position of the robot
+% Input:
+% l [6x1]
+%   Kinematic parameters
+% q [Nx6]
+%   Motor positions for N different robot poses
+% 
+% Output:
+% freturn [Nx3]
+%   End effector positions for the N input poses of q
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
+
 function freturn = posEE(l, q)
 
 	t3866 = sin(q(:,2));

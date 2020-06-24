@@ -1,4 +1,17 @@
-% % Author M.Sc. Björn Volkmann
+% Return inverse dynamics regressor matrix (minimal parameter form)
+% Input:
+% C
+%   Design matrix (stacked regressor matrices)
+% y
+%   Measurements (motor torques)
+% variance
+% 
+% Output:
+% theta
+%   Estimation of parameter vector
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 function theta = WLS_method(C, y, variance)
 
