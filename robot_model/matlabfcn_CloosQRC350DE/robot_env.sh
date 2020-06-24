@@ -1,0 +1,13 @@
+robot_NQJ=6
+robot_NJ=6
+robot_name="CloosQRC350DE"
+robot_NL=7
+robot_gVec=0,0,1
+robot_NKP=7
+robot_KP="L1 L2 L3 L4 L5 L6 kDG"
+robot_kinconstr_exist=1
+robot_NKCP=1
+robot_KCP="kDG"
+robot_NMPVFIXB=19
+robot_NMPVFLOATB=NOTDEFINED
+robot_NTAUJFIXBREGNN=63

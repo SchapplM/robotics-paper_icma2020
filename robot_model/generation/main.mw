@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2019" minor="2"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" warnlevel="3" compactdisplay="false" preplot="" helpbrowser="standard" displayprecision="-1" echo="1" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" historytimestamp="false" screenwidth="79" indentamount="4" plotoutput="terminal" screenpixelheight="1050" rtablesize="[10, 10]" useclientjvm="true" labelwidth="20" postplot="" typesetting="extended" ansi="false" ansicolor="[]" elisiondigitsthreshold="10000" showassumed="1" ansilprint="false" trailingsemicolon="true" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+    <Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group labelreference="L34" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart:
+with(ArrayTools): # Size, NumElems, Concatenate
+with(LinearAlgebra): # Transpose, CrossProduct
+with(Physics): # diff</Text-field>
+</Input>
+</Group>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Eingabe</Text-field></Title>
+<Group labelreference="L1" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Wahl der DH-Konvention (&quot;standard&quot;: Paul; &quot;modified&quot;: Craig)
+DH_type := &quot;standard&quot;:
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L4" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Eingabe der DH-Parameter (&quot;standard&quot;: Paul; &quot;modified&quot;: Craig)
+if DH_type = &quot;modified&quot; then
+#               [  alpha, a  , theta                             , d  ]
+  DH := Matrix([[  0    , 0  ,-q[1](t)                           , l1 ],
+                [ -Pi/2 , l2 , q[2](t) - Pi/2                    , 0  ],
+                [  0    , l3 , q[3](t)                           , 0  ],
+                [ -Pi/2 , l4 , q[4](t)                           , l5 ],
+                [  Pi/2 , 0  , q[5](t)                           , 0  ],
+                [ -Pi/2 , 0  , q[6](t) - 227/1200 * q[5](t) + Pi , l6 ]]):
+<Font encoding="UTF-8">  # T\303\266dtheide
+</Font>  #DH := Matrix([[  0    , 0  , q[1](t)        , l1 ],
+  #              [  Pi/2 , l2 , q[2](t)        , 0  ],
+  #              [  0    , l3 , q[3](t) + Pi/2 , 0  ],
+  #              [  Pi/2 , l4 , q[4](t)        , l5 ],
+  #              [ -Pi/2 , 0  , q[5](t)        , 0  ],
+  #              [  Pi/2 , 0  , q[6](t)        , l6 ]]):
+  #Puma
+  #DH := Matrix([[  0    , 0    , q[1](t)        , 0    ],
+  #              [ -Pi/2 , 0    , q[2](t)        , 0    ],
+  #              [  0    , D3   , q[3](t)        , R3   ],
+  #              [ -Pi/2 , D4   , q[4](t)        , R4   ],
+  #              [  Pi/2 , 0    , q[5](t)        , 0    ],
+  #              [ -Pi/2 , 0    , q[6](t)        , 0    ]]):
+elif DH_type = &quot;standard&quot; then
+#               [theta                              , d  , a  , alpha  ]
+  DH := Matrix([[-q[1](t)                           , l1 , l2 , - Pi/2 ],
+                [ q[2](t) - Pi/2                    , 0  , l3 ,   0    ],
+                [ q[3](t)                           , 0  , l4 , - Pi/2 ],
+                [ q[4](t)                           , l5 , 0  ,   Pi/2 ],
+                [ q[5](t)                           , 0  , 0  , - Pi/2 ],
+                [ q[6](t) - 227/1200 * q[5](t) + Pi , l6 , 0  ,   0    ]]):#
+end if:
+
+n := Size(DH,1):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L3" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font encoding="UTF-8"># Eingabe des Gravitaionsvektors ausgedr\303\274ckt im KS 0
+</Font>g0 := Vector[column]([  0 ,
+                        0 ,
+                       -g ]):</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Funktionsbibliothek</Text-field></Title>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Grundlegende homogene Transformationsmatrizen</Text-field></Title>
+<Group labelreference="L31" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rotX := proc(alpha)
+  Matrix([[ 1 , 0          ,  0          , 0 ],
+          [ 0 , cos(alpha) , -sin(alpha) , 0 ],
+          [ 0 , sin(alpha) ,  cos(alpha) , 0 ],
+          [ 0 , 0          ,  0          , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L27" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rotY := proc(beta)
+  Matrix([[  cos(beta) , 0 , sin(beta) , 0 ],
+          [  0         , 1 , 0         , 0 ],
+          [ -sin(beta) , 0 , cos(beta) , 0 ],
+          [  0         , 0 , 0         , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L28" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rotZ := proc(gamma)
+  Matrix([[ cos(gamma) , -sin(gamma) , 0 , 0 ],
+          [ sin(gamma) ,  cos(gamma) , 0 , 0 ],
+          [ 0          ,  0          , 1 , 0 ],
+          [ 0          ,  0          , 0 , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L29" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">transX := proc(x)
+  Matrix([[ 1 , 0 , 0 , x ],
+          [ 0 , 1 , 0 , 0 ],
+          [ 0 , 0 , 1 , 0 ],
+          [ 0 , 0 , 0 , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L35" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">transY := proc(y)
+  Matrix([[ 1 , 0 , 0 , 0 ],
+          [ 0 , 1 , 0 , y ],
+          [ 0 , 0 , 1 , 0 ],
+          [ 0 , 0 , 0 , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L36" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">transZ := proc(z)
+  Matrix([[ 1 , 0 , 0 , 0 ],
+          [ 0 , 1 , 0 , 0 ],
+          [ 0 , 0 , 1 , z ],
+          [ 0 , 0 , 0 , 1 ]]):
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Denavit-Hartenbergmatrizen</Text-field></Title>
+<Group labelreference="L32" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">sDHMatrix := proc(theta,d,a,alpha)
+  rotZ(theta).transZ(d).transX(a).rotX(alpha):
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L44" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">mDHMatrix := proc(alpha,a,theta,d)
+  rotX(alpha).transX(a).rotZ(theta).transZ(d):
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Lage der Koordinatensysteme</Text-field></Title>
+<Group labelreference="L40" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">DHKS := proc(DH,DH_type)
+  local theta, d, a, alpha, T, T0, R:=table(), r:=table(), R0:=table(), r0:=table(), i:
+
+  # Homogene Transformationsmatrix vom KS 0 ins KS 0
+  T0 := Matrix(4,shape=identity):
+  for i from 1 to n do
+    if DH_type = &quot;modified&quot; then
+      # Homogene Transformationsmatrix vom KS i-1 ins KS i
+      T  := mDHMatrix(DH(i,1),DH(i,2),DH(i,3),DH(i,4)):
+    else
+      # Homogene Transformationsmatrix vom KS i-1 ins KS i
+      T  := sDHMatrix(DH(i,1),DH(i,2),DH(i,3),DH(i,4)):
+    end if:
+
+    # Homogene Transformationsmatrix vom KS 0 ins KS i
+    T0 := simplify(T0.T):
+
+    # Rotationsmatrix vom KS i-1 ins KS i
+    R[i]  := T(1..3,1..3):
+<Font encoding="UTF-8">    # Translationsvektor vom KS i-1 ins KS i ausgedr\303\274ckt im KS i-1</Font>
+    r[i]  := T(1..3,4):
+    # Rotationsmatrix vom KS 0 ins KS i
+    R0[i] := T0(1..3,1..3):
+<Font encoding="UTF-8">    # Translationsvektor vom KS 0 ins KS i ausgedr\303\274ckt im KS 0</Font>
+    r0[i] := T0(1..3,4):
+  end:
+  
+  return eval(R), eval(R0), eval(r), eval(r0);
+end proc:
+</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2"><Font encoding="UTF-8">Definition der Tr\303\244gheitsparameter</Font></Text-field></Title>
+<Group labelreference="L45" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">definePar := proc(nBody)
+  local m:=table(), rC:=table(), J:=table(), p:=Vector[column](nBody*11), i:
+  for i from 1 to nBody do
+<Font encoding="UTF-8">    # Masse von K\303\266rper i
+</Font>    m[i] := cat('m',i):
+
+<Font encoding="UTF-8">    # Vektor vom Ursprung des KS i zum Schwerpunkt von K\303\266rper i 
+    # Ausgedr\303\274ckt im KS i
+</Font>    rC[i] := Vector[column]([ cat('rC',i,'x') ,
+                              cat('rC',i,'y') ,
+                              cat('rC',i,'z') ]):
+
+<Font encoding="UTF-8">    # Massentr\303\244gheitstensor des K\303\266rpers i bez\303\274glich des Ursprungs von KS i
+    # Ausgedr\303\274ckt im KS i
+</Font>    J[i] := Matrix([[ cat('J',i,'xx') , cat('J',i,'xy') , cat('J',i,'xz') ],
+                    [ cat('J',i,'xy') , cat('J',i,'yy') , cat('J',i,'yz') ],
+                    [ cat('J',i,'xz') , cat('J',i,'yz') , cat('J',i,'zz') ]]):
+
+    p(11*i-10...11*i,1) := Vector[column]([J[i](1,1),
+                                           J[i](1,2),
+                                           J[i](1,3),
+                                           J[i](2,2),
+                                           J[i](2,3),
+                                           J[i](3,3),
+                                           m[i]*rC[i](1,1),
+                                           m[i]*rC[i](2,1),
+                                           m[i]*rC[i](3,1),
+                                           m[i],
+                                           cat('JA',i)]):
+  end:
+
+  return eval(m), eval(rC), eval(J), p:
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Aufteilen eines Ausdrucks in dessen Summanden</Text-field></Title>
+<Group labelreference="L50" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">splitSummands := proc(input_expr)
+  local expr, sub_expr:
+
+  expr := expand(input_expr):
+  
+  if type(expr,'`+`') then
+    sub_expr := op(expr):
+    return sub_expr:
+  else
+    return expr:
+  end if:
+  
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Aufteilen eines Ausdrucks in dessen Faktoren</Text-field></Title>
+<Group labelreference="L57" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">splitFactors := proc(input_expr)
+  local sub_expr:
+  
+  if type(input_expr,'`*`') then
+    sub_expr := op(input_expr):
+    return sub_expr:
+  else
+    return input_expr:
+  end if:
+  
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Entfernen von Nullzeilen</Text-field></Title>
+<Group labelreference="L55" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">removeEmptyRows := proc(h,G)
+  local mh, mG, i, j, flag:
+  
+  flag := Vector[column](Size(G,1)):
+  for i from 1 to Size(G,1) do
+    flag(i) := 0:
+    for j from 1 to Size(G,2) do
+      if G(i,j) &lt;&gt; 0 then
+        flag(i) := 1:
+      end if:
+    end do:
+  end do:
+
+  mh := Vector[column](Norm(flag,1)):
+  mG := Matrix(Norm(flag,1),Size(G,2)):
+
+  j := 1:
+  for i from 1 to Size(G,1) do
+    if flag(i) = 1 then
+      mG(j,..) := G(i,..):
+      mh(j) := h(i):
+      j := j + 1:
+    end if:
+  end do:
+
+  return mh, mG:
+end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L69" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">permuteEmptyRows := proc(G)
+  local Pb, Pd, i, j, k, flag:
+  
+  flag := Vector[column](Size(G,1)):
+  for i from 1 to Size(G,1) do
+    flag(i) := 0:
+    for j from 1 to Size(G,2) do
+      if G(i,j) &lt;&gt; 0 then
+        flag(i) := 1:
+      end if:
+    end do:
+  end do:
+
+  Pb := Matrix(Norm(flag,1),Size(G,1)):
+  Pd := Matrix(Size(G,1)-Norm(flag,1),Size(G,1)):
+
+  j := 0:
+  k := 0:
+  for i from 1 to Size(G,1) do
+    if flag(i) = 1 then
+      j := j + 1:
+      Pb(j,i) := 1:
+    elif flag(i) = 0 then
+      k := k + 1:
+      Pd(k,i) := 1:
+    end if:
+  end do:
+
+  return Pb, Pd:
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Matlab-Export</Text-field></Title>
+<Group labelreference="L77" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">writeMatlabFunction := proc(functionName,expr)
+  local outputPath, filePath, filePathTemp, stringTemp, i, file, inputParam:
+  
+  inputParam := indets(expr,name):
+  
+  outputPath := cat(interface(worksheetdir),&quot;/output/&quot;):
+
+  if not FileTools[Exists](outputPath) then
+    mkdir(outputPath):
+  end if:
+  
+  filePath := cat(outputPath,functionName,&quot;.m&quot;):
+  if FileTools[Exists](filePath) then
+    FileTools[Remove](filePath):
+  end if:
+
+  filePathTemp := cat(outputPath,functionName,&quot;_tmp.m&quot;):
+
+  if FileTools[Exists](filePathTemp) then
+    FileTools[Remove](filePathTemp):
+  end if:
+
+  #CodeGeneration[Matlab](expr,output=filePathTemp,resultname=freturn,optimize):
+  # Workaround: http://www.mapleprimes.com/questions/151148-Matlab-Code-Generation-With-Optimizetrue-
+  CodeGeneration[Matlab](subsop([-1,1]= freturn, eval([codegen:-optimize](expr, tryhard), pow= `^`)),output=filePathTemp):
+
+  file := fopen(filePath,WRITE,TEXT):
+  
+  fprintf(file, &quot;function freturn = %s(&quot;,functionName):
+  if nops(inputParam) &gt; 0 then
+    fprintf(file,&quot;%s&quot;,convert(inputParam[1],string)):
+    for i from 2 to nops(inputParam) do
+      fprintf(file,&quot;, %s&quot;,convert(inputParam[i],string)):
+    end do:
+  end if:
+  fprintf(<Font encoding="UTF-8">file, &quot;)\134n\134n&quot;):
+</Font>
+  stringTemp := readline(filePathTemp):
+  while stringTemp &lt;&gt; 0 do
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot;*&quot;,&quot;.*&quot;):
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot;^&quot;,&quot;.^&quot;):
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot;/&quot;,&quot;./&quot;):
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot; 0 &quot;,&quot; zeros(size(ddq1)) &quot;):
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot; 0 &quot;,&quot; zeros(size(ddq1)) &quot;):
+    stringTemp := StringTools[SubstituteAll](stringTemp,&quot; 0;&quot;,&quot; zeros(size(ddq1));&quot;):
+<Font encoding="UTF-8">    fprintf(file,&quot;\134t%s\134n&quot;,stringTemp):
+</Font>    stringTemp := readline(filePathTemp):
+  end do:
+
+  if FileTools[Exists](filePathTemp) then
+    FileTools[Remove](filePathTemp):
+  end if:
+
+<Font encoding="UTF-8">  fprintf(file, &quot;\134nend\134n&quot;):
+</Font>
+  fclose(file):
+
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2">Finden eines Elementes in einem Vektor</Text-field></Title>
+<Group labelreference="L58" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">hasElement := proc(v, expr)
+# Gibt den Index des Vektorelements von &quot;v&quot; wieder, das dem Ausdruck &quot;expr&quot; entspricht.
+<Font encoding="UTF-8"># Ist der Ausdruck nicht enthalten wird der h\303\266chste Index um eins erh\303\266ht wiedergegeben.
+</Font>  local i:
+
+  for i from 1 to NumElems(v) do
+    if verify(v(i),expr) then
+      return i:
+    end if:
+  end do:
+  
+  return NumElems(v)+1:
+end proc:</Text-field>
+</Input>
+</Group>
+</Section>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Berechnung der Energie des Systems</Text-field></Title>
+<Group labelreference="L38" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Berechnung der Lage und Orientierung der Koordinatensysteme
+R,R0,r,r0 := DHKS(DH,DH_type):
+
+# unassign('R','r','DH','DH_type','rotX','rotY','rotZ','transX','transY','transZ','sDHMatrix','mDHMatrix','DHKS'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L39" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Bestimmung der Geschwindigkeit und Winkelgeschwindigkeit der Koordinatensystem relativ zum KS 0
+for i from 1 to n do
+  # Geschwindigkeit des Ursprungs des KS i relativ zum Ursprung des KS 0 (inertial!)
+<Font encoding="UTF-8">  # Ausgedr\303\274ckt im KS 0
+</Font>  v0 := diff(r0[i],t):
+  # Geschwindigkeit des Ursprungs des KS i relativ zum Ursprung des KS 0
+<Font encoding="UTF-8">  # Ausgedr\303\274ckt im KS i</Font>
+  v[i] := simplify(expand(Transpose(R0[i]).v0)):
+
+  S := diff(R0[i],t).Transpose(R0[i]):
+  # Winkelgeschwindigkeit des KS i relativ zum KS 0 (inertial!)
+<Font encoding="UTF-8">  # Ausgedr\303\274ckt im KS 0</Font>
+  omega0 := Vector[column]([ S(3,2) ,
+                             S(1,3) ,
+                             S(2,1) ]):
+  # Winkelgeschwindigkeit des KS i relativ zum KS 0
+<Font encoding="UTF-8">  # Ausgedr\303\274ckt im KS i</Font>
+  omega[i] := simplify(expand(Transpose(R0[i]).omega0)):
+end do:
+# unassign('i','v0','S','omega0'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L42" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Festlegung der Massenparameter
+m, rC, J, p := definePar(n):
+
+# unassign('definePar'):
+
+# Ggf. Parameter zu null setzen
+subslist := [rC2y=0,rC4x=0,rC4z=0,rC5x=0,rC5y=0,rC6x=0,rC6y=0,J2xy=0,J2yz=0,J4xy=0,J4xz=0,J4yz=0,J5xy=0,J5xz=0,J5yz=0,J6xy=0,J6xz=0,J6yz=0]:
+
+for i from 1 to n do
+  m[i] := subs(subslist,m[i]):
+  rC[i] := subs(subslist,rC[i]):
+  J[i] := subs(subslist,J[i]):
+end do:
+p := subs(subslist,p):
+
+# unassign('subslist','i'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L46" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Kinetische Energie des Systems
+E := 0:
+e := Vector[column](11*n):
+for i from 1 to n do
+  E := E + 1/2*(Transpose(omega[i]).J[i].omega[i] + m[i]*Transpose(v[i]).v[i] + 2*m[i]*Transpose(rC[i]).CrossProduct(v[i],omega[i])) + 1/2*cat('JA',i)*diff(q[i](t),t)^2:
+  e(11*i-10...11*i,1) := Vector[column]([1/2*omega[i](1)*omega[i](1),
+                                            omega[i](1)*omega[i](2),
+                                            omega[i](1)*omega[i](3),
+                                        1/2*omega[i](2)*omega[i](2),
+                                            omega[i](2)*omega[i](3),
+                                        1/2*omega[i](3)*omega[i](3),
+                                        v[i](2)*omega[i](3) - v[i](3)*omega[i](2),
+                                        v[i](3)*omega[i](1) - v[i](1)*omega[i](3),
+                                        v[i](1)*omega[i](2) - v[i](2)*omega[i](1),
+                                        1/2*Transpose(v[i]).v[i],
+                                        1/2*diff(q[i](t),t)^2]):
+end do:
+if simplify(E-Transpose(e).p)&lt;&gt;0 then
+  error &quot;kinetic energy was not calculated correctly&quot;:
+end if:
+
+# unassign('i','omega','J','v'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L48" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Potentielle Energie des Systems
+U := 0:
+u := Vector[column](11*n):
+for i from 1 to n do
+  U := U - m[i]*Transpose(g0).(r0[i]+R0[i].rC[i]):
+  u(11*i-10...11*i,1) := Vector[column]([0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        -Transpose(g0).R0[i](..,1),
+                                        -Transpose(g0).R0[i](..,2),
+                                        -Transpose(g0).R0[i](..,3),
+                                        -Transpose(g0).r0[i],
+                                        0]):
+end do:
+if simplify(U-Transpose(u).p)&lt;&gt;0 then
+  error &quot;kinetic energy was not calculated correctly&quot;:
+end if:
+
+# unassign('i','g0','R0','m','r0','rC'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L49" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Totale Energie des Systems
+lagrange := e - u:
+for i from 1 to Size(lagrange,1) do
+  if p(i) = 0 then
+    e(i) := 0:
+    u(i) := 0:
+    lagrange(i) := 0:
+  end if:
+end do:
+
+lagrange_old := E - U:
+
+if simplify(lagrange_old - Transpose(lagrange).p) &lt;&gt; 0 then
+  error &quot;lagrange term was not processed correctly&quot;:
+end if:
+
+# unassign('E','U','e','u','i'):
+</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Bestimmung der Minimalparameter</Text-field></Title>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 2" layout="Heading 2"><Font encoding="UTF-8">Finden von linearen Abh\303\244ngigkeiten</Font></Text-field></Title>
+<Group hide-input="false" labelreference="L53" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># lagrange = V.w
+V := Matrix():
+w := Vector[column]():
+for i from 1 to NumElems(lagrange) do
+  lagrange_term := simplify(expand(lagrange(i))):
+  lagrange_term := convert(lagrange_term,exp):
+  lagrange_term := simplify(expand(lagrange_term),size):
+  lagrange_summand := [splitSummands(lagrange_term)]:
+  for j from 1 to nops(lagrange_summand) do
+    <Font encoding="UTF-8"># Konstante Ausdr\303\274cke werden nicht ber\303\274cksichtigt!</Font>
+    if has(lagrange_summand[j],t) then
+      lagrange_factor := [splitFactors(lagrange_summand[j])]:
+      lagrange_timeVar := 1:
+      lagrange_constant := 1:
+      for k from 1 to nops(lagrange_factor) do
+        if has(lagrange_factor[k],t) then
+          lagrange_timeVar := lagrange_timeVar * lagrange_factor[k]:
+        else
+          lagrange_constant := lagrange_constant * lagrange_factor[k]:
+        end if
+      end do:
+      lagrange_timeVar := simplify(expand(lagrange_timeVar)):
+      index_timeVar := hasElement(w,lagrange_timeVar):
+      if index_timeVar &gt; NumElems(w) then
+        w(index_timeVar) := lagrange_timeVar:
+        V(i,index_timeVar) := lagrange_constant:
+      elif i &gt; Size(V,1) then
+        V(i,index_timeVar) := lagrange_constant:
+      else
+        V(i,index_timeVar) := V(i,index_timeVar) + lagrange_constant:
+      end if:
+    end if:
+  end do:
+end do:
+
+# unassign('i','j','k','lagrange_term','lagrange_summand','lagrange_factor','lagrange_timeVar','index_timeVar','lagrange_constant','hasElement','splitSummands','splitFactors'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L87" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#for i from 1 to NumElems(lagrange) do
+#  lagrange_test := V(i,..).w:
+#  if has(simplify(expand(lagrange(i) - lagrange_test(1))),t) then
+#    print(i):
+#  end if:
+#end do:
+#unassign('lagrange_test'):
+#if has(simplify(lagrange_old - Transpose(simplify(expand(V.w))).p),t) then
+#  error &quot;lagrange term was not processed correctly&quot;:
+#end if:
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L83" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RankV := Rank(V);
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L60" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">U := LinearSolve(Transpose(V),Transpose(V)):
+for i from 1 to Size(V,1) - RankV do
+  for j from 1 to Size(V,1) do
+    U := subs(_t[i, j]=0,U):
+  end do:
+end do:
+
+# unassign('i','j','RankV'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L62" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#lagrange_test := Transpose(V.w).U:
+#for i from 1 to NumElems(lagrange) do
+#  if has(simplify(expand(lagrange(i) - lagrange_test(i))),t) then
+#    print(i):
+#  end if:
+#end do:
+#unassign('lagrange_test'):
+#if has(simplify(lagrange_old - Transpose(V.w).U.p),t) then
+#  error &quot;lagrange term was not processed correctly&quot;:
+#end if:
+
+# unassign('w','V'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L70" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">Pb, Pd :=permuteEmptyRows(U):
+P := Matrix([[Pb],[Pd]]):
+
+# unassign('Pd','P','permuteEmptyRows','removeEmptyRows'):
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L64" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">mp := Pb.U.p:
+for i from 1 to NumElems(mp) do
+  print(mp(i)):
+end do:
+
+# unassign('i','U'):
+</Text-field>
+</Input>
+</Group>
+</Section>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Lagrangesche-Gleichung zweiter Art</Text-field></Title>
+<Group labelreference="L73" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to n do
+  tau[i] := diff(diff(lagrange,diff(q[i](t),t)),t) - diff(lagrange,q[i](t)):
+  tau[i] := simplify(expand(tau[i])):
+  
+  tau_old[i] := diff(diff(lagrange_old,diff(q[i](t),t)),t) - diff(lagrange_old,q[i](t)):
+  tau_old[i] := simplify(expand(tau_old[i])):
+end do:
+
+for i from 1 to n do
+  if not verify(tau_old[i],Transpose(tau[i]).p,equal) then
+    error &quot;tau term was not calculated correctly&quot;:
+  end if:
+end do:
+
+for i from 1 to n do
+  if not verify(tau_old[i],Transpose(Pb.tau[i]).mp,equal) then
+    error &quot;tau term was not calculated correctly&quot;:
+  end if:
+end do:
+
+# unassign('tau_old','lagrange','lagrange_old','p','i')
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L79" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">subslist := []:
+for i from 1 to n do
+  subslist := [op(subslist),          q[i](t)       = cat(  'q',i)]:
+  subslist := [op(subslist),     diff(q[i](t),t)    = cat( 'dq',i)]:
+  subslist := [op(subslist),diff(diff(q[i](t),t),t) = cat('ddq',i)]:
+end do:
+regressor := Matrix(n,NumElems(mp)):
+for i from 1 to n do
+  regressor(i,..) := subs(subslist,Transpose(Pb.tau[i])):
+end do:
+
+# unassign('subslist','Pb','tau','i'):
+</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Lineares Reibmodell</Text-field></Title>
+<Group labelreference="L82" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">friction := Matrix(n,2*n):
+pFric := Vector[column](2*n):
+for i from 1 to n do
+  friction(i,i) := tanh(ks*cat('dq',i)):#signum(cat('dq',i)):
+  friction(i,n+i) := cat('dq',i):
+  #friction(i,2*n+i) := 1:
+  pFric(i) := cat('fc',i):
+  pFric(n+i) := cat('fv',i):
+  #pFric(2*n+i) := cat('tau_off_',i):
+end do:
+
+regressorFric := Concatenate(2,regressor,friction):
+mpFric := Concatenate(1,mp,pFric):
+
+# unassign('i','pFric','friction','regressor','mp'):</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Direkte Dynamik (Minimalparameter)</Text-field></Title>
+<Group hide-input="false" labelreference="L90" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font encoding="UTF-8"># Inverse Dynamik in Abh\303\244ngigkeit der Minimalparameter (&quot;param&quot;)
+</Font>tau_mp := regressorFric . Vector[column](Size(mpFric,1),symbol = param):
+
+# Definition der Elemente der Bewegungsgleichung
+M  :=Matrix(n,n):  # Massenmatrix
+N  :=Vector[column](n):<Font encoding="UTF-8">     # Vektor der Coriolis-, Zentrifugal, Gravitations- und Reibkr\303\244fte</Font>
+ddq:=Vector[column](n):     # Gelenkbeschleunigung
+
+# Erstellung einer Liste der Beschleunigungen der Minimalkoordinaten.
+<Font encoding="UTF-8"># Diese Liste wird benutzt um die Ausdr\303\274cke der Bewegungsgleichungen nach den Beschleunigungen zu sortieren.</Font>
+list_ddq:=[]:
+for i from 1 to n do
+  list_ddq:=[op(list_ddq),ddq||i]:
+end do:
+
+for i from 1 to Size(tau_mp,1) do
+  ddq(i):=ddq||i:
+
+  # Die Bewegungsgleichungen werden nach den Beschleunigungen sortiert. (Notwendig um die Koeffizienten in &quot;M&quot; mittels &quot;coeff&quot; zu bestimmen.)
+  tau_mp(i):=collect(expand(tau_mp(i)),list_ddq):
+
+<Font encoding="UTF-8">  # Die Eintr\303\244ge der Massenmatrix werden als Koeffizienten der einzelnen Gelenkbeschleunigungen identifiziert</Font>
+  for j from 1 to n do
+    M(i,j):=simplify(coeff(tau_mp(i),ddq||j)):
+  end do:
+  N(i):=simplify(remove(has,tau_mp(i),list_ddq)):
+
+end do:
+
+# unassign('i','j','list_ddq'):
+
+<Font encoding="UTF-8"># Pr\303\274fen, ob bei der Aufspaltung in Matrizen und Vektoren, Terme vergessen oder doppelt ber\303\274cksichtigt wurden.
+</Font>for i from 1 to n do
+  # Falls korrekt: tau_mp = M.ddq+N -&gt; tau_mp-M.ddq-N = 0
+  check:=simplify(tau_mp(i,1)-DotProduct(M(i,..),ddq,conjugate=false)-N(i)):
+  if check&lt;&gt;0 then
+<Font encoding="UTF-8">    error &quot;Fehler! Nicht alle Teile der Bewegungsgleichung wurden korrekt in Matrizenform \303\274berf\303\274hrt!&quot;:</Font>
+    return check:
+  end if:
+end do:
+
+# unassign('i','check','tau_mp','ddq'):
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L112" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font encoding="UTF-8"># 6x6-Matrix mit Platzhalter-Eintr\303\244gen zur symbolischen Berechnung der Inversen
+</Font>Mtemp := Matrix(6,6,symbol=mtemp):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L111" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Ausnutzung der Symmetrie der Massenmatrix
+for i from 2 to 6 do
+  for j from 1 to 5 do
+    if i&gt;j then
+      Mtemp(i,j):= Mtemp(j,i):
+    end if:
+  end do:
+end do:
+# unassign('i','j'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Determinante der Platzhalter-Matrix
+detM := simplify(Determinant(Mtemp)):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L116" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Adjunkte der Platzhalter-Matrix
+adjM := simplify(Adjoint(Mtemp)):
+
+# unassign('Mtemp'):
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L118" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Inverse der Platzhalter-Matrix
+invM := adjM/detM:
+
+# unassign('detM','adjM'):
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L115" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font encoding="UTF-8"># Ersetzen der Platzhalter-Eintr\303\244ge mit den Eintr\303\244gen der Massenmatrix
+</Font>for i from 1 to n do
+  for j from 1 to n do
+    if i&lt;=j then
+      invM := subs(mtemp[i,j]=M(i,j),invM):
+    end if:
+  end do:
+end do:
+
+# unassign('i','j'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L117" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"># Berechnung der direkten Dynamik:
+DirDyn := invM.(Vector[column](n,symbol=tauJoint)-N):
+# unassign('invM','n'):
+</Text-field>
+</Input>
+</Group>
+</Section>
+<Section collapsed="false" isCollapsible="true" drawButton="true" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title><Text-field style="Heading 1" layout="Heading 1">Erstellen der Matlab-Funktionen</Text-field></Title>
+<Group labelreference="L75" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#writeMatlabFunction(&quot;Minimalparameter&quot;,mp):
+writeMatlabFunction(&quot;Minimalparameter&quot;,mpFric):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L78" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#writeMatlabFunction(&quot;RegressorMatrix&quot;,regressor):
+writeMatlabFunction(&quot;RegressorMatrix&quot;,regressorFric):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L119" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">writeMatlabFunction(&quot;DirDyn&quot;,DirDyn):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L100" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#writeMatlabFunction(&quot;M&quot;,M):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L102" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#writeMatlabFunction(&quot;N&quot;,N):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L120" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">DiagMassMatrix := Vector[column]([M(1,1),M(2,2),M(3,3),M(4,4),M(5,5),M(6,6)]):
+writeMatlabFunction(&quot;DiagMassMatrix&quot;,DiagMassMatrix):
+# unassign('DiagMassMatrix'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L101" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#writeMatlabFunction(&quot;RHS&quot;,Vector[column](6,symbol=taujoint)-N):
+# unassign('writeMatlabFunction'):
+</Text-field>
+</Input>
+</Group>
+<Group labelreference="L81" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">subslist := []:
+for i from 1 to n do
+  subslist := [op(subslist),          q[i](t)       = cat(  'q',i)]:
+  subslist := [op(subslist),     diff(q[i](t),t)    = cat( 'dq',i)]:
+  subslist := [op(subslist),diff(diff(q[i](t),t),t) = cat('ddq',i)]:
+  subslist := [op(subslist),cat('l',i)=cat('L',i)]:
+  subslist := [op(subslist),cat('rC',i,'x') = cat('XC',i)]:
+  subslist := [op(subslist),cat('rC',i,'y') = cat('YC',i)]:
+  subslist := [op(subslist),cat('rC',i,'z') = cat('ZC',i)]:
+  subslist := [op(subslist),cat('J',i,'xx') = cat('Ixx',i) + cat('m',i)*(cat('YC',i)^2+cat('ZC',i)^2)]:
+  subslist := [op(subslist),cat('J',i,'xy') = cat('Ixy',i) - cat('m',i)* cat('XC',i) * cat('YC',i)]:
+  subslist := [op(subslist),cat('J',i,'xz') = cat('Ixz',i) - cat('m',i)* cat('XC',i) * cat('ZC',i)]:
+  subslist := [op(subslist),cat('J',i,'yy') = cat('Iyy',i) + cat('m',i)*(cat('XC',i)^2+cat('ZC',i)^2)]:
+  subslist := [op(subslist),cat('J',i,'yz') = cat('Iyz',i) - cat('m',i)* cat('YC',i) * cat('ZC',i)]:
+  subslist := [op(subslist),cat('J',i,'zz') = cat('Izz',i) + cat('m',i)*(cat('XC',i)^2+cat('YC',i)^2)]:
+end do:
+tau_export := Vector[column](n):
+for i from 1 to n do
+  tau_export(i) := subs(subslist,Transpose(Pb.tau[i]).mp):
+  R0_export[i] := subs(subslist,R0[i]):
+  r0_export[i] := subs(subslist,r0[i]):
+end do:
+writeMatlabFunction(&quot;InvDyn&quot;,tau_export):
+writeMatlabFunction(&quot;A01&quot;,R0_export[1]):
+writeMatlabFunction(&quot;A02&quot;,R0_export[2]):
+writeMatlabFunction(&quot;A03&quot;,R0_export[3]):
+writeMatlabFunction(&quot;A04&quot;,R0_export[4]):
+writeMatlabFunction(&quot;A05&quot;,R0_export[5]):
+writeMatlabFunction(&quot;A06&quot;,R0_export[6]):
+writeMatlabFunction(&quot;r01&quot;,r0_export[1]):
+writeMatlabFunction(&quot;r02&quot;,r0_export[2]):
+writeMatlabFunction(&quot;r03&quot;,r0_export[3]):
+writeMatlabFunction(&quot;r04&quot;,r0_export[4]):
+writeMatlabFunction(&quot;r05&quot;,r0_export[5]):
+writeMatlabFunction(&quot;r06&quot;,r0_export[6]):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L89" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group hide-input="false" labelreference="L59" drawlabel="true">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>
