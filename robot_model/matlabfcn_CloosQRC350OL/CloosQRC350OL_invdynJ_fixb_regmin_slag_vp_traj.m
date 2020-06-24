@@ -15,13 +15,13 @@
 %   pkin=[L1,L2,L3,L4,L5,L6]';
 %
 % Output:
-% RV_Traj [NTx139]
+% RV_Traj [NTx63]
 %   time series of regressor matrices as vectors
 %   see CloosQRC350OL_invdynJ_fixb_regmin2vec.m
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -44,7 +44,7 @@ assert(isreal(pkin) && all(size(pkin) == [6 1]), ...
   'CloosQRC350OL_invdynJ_fixb_regmin_slag_vp_traj: Kinematic parameters pkin have to be [6x1] (double)');
   
 %% Trajektorie der Regressor-Vektoren aufbauen
-RV_Traj = NaN(size(Q,1), 139);
+RV_Traj = NaN(size(Q,1), 63);
 for ii = 1:size(Q,1)
   RV_Traj(ii,:) = CloosQRC350OL_invdynJ_fixb_regmin2vec( ...
     CloosQRC350OL_invdynJ_fixb_regmin_slag_vp(Q(ii,:)', QD(ii,:)', QDD(ii,:)', g, pkin) );

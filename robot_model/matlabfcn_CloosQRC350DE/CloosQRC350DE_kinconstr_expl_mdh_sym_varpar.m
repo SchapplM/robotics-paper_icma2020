@@ -17,8 +17,8 @@
 % [NakamuraGho1989] Nakamura, Yoshihiko and Ghodoussi, Modjtaba: Dynamics computation of closed-link robot mechanisms with nonredundant and redundant actuators (1989)
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-19 21:40
-% Revision: caa0dbda1e8a16d11faaa29ba3bbef6afcd619f7 (2020-05-25)
+% Datum: 2020-06-23 21:15
+% Revision: 3f22bf868ffa24e21e77a0fe3b46e78b2d6fdc1f (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -34,8 +34,8 @@ assert(isreal(pkin) && all(size(pkin) == [7 1]), ...
 %% Symbolic Calculation
 % From kinconstr_expl_matlab.m
 % OptimizationMode: 2
-% StartTime: 2020-06-19 21:37:17
-% EndTime: 2020-06-19 21:37:17
+% StartTime: 2020-06-23 20:58:44
+% EndTime: 2020-06-23 20:58:44
 % DurationCPUTime: 0.02s
 % Computational Cost: add. (2->2), mult. (1->1), div. (0->0), fcn. (0->0), ass. (0->1)
 t1 = [-qJ(1); qJ(2); qJ(3); qJ(4); qJ(5); -pkin(7) * qJ(5) + qJ(6);];

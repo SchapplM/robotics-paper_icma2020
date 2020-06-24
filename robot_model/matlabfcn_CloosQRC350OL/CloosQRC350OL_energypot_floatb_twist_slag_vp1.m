@@ -24,8 +24,8 @@
 %   Potential energy
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -50,27 +50,18 @@ assert(isreal(rSges) && all(size(rSges) == [7,3]), ...
 %% Symbolic Calculation
 % From energy_potential_floatb_twist_worldframe_par1_matlab.m
 % OptimizationMode: 2
-% StartTime: 2020-06-20 07:59:58
-% EndTime: 2020-06-20 07:59:58
-% DurationCPUTime: 0.26s
-% Computational Cost: add. (72->32), mult. (65->35), div. (0->0), fcn. (59->10), ass. (0->19)
-t10 = sin(qJ(4));
-t7 = qJ(2) + qJ(3);
-t5 = cos(t7);
-t20 = t10 * t5;
-t13 = cos(qJ(4));
-t19 = t13 * t5;
-t18 = pkin(1) + r_base(3);
-t14 = cos(qJ(2));
-t17 = t14 * pkin(3) + t18;
-t16 = t5 * pkin(4) + t17;
-t4 = sin(t7);
-t15 = -t4 * pkin(5) + t16;
-t12 = cos(qJ(5));
-t11 = cos(qJ(6));
-t9 = sin(qJ(5));
-t8 = sin(qJ(6));
-t2 = t12 * t19 - t4 * t9;
-t1 = -t12 * t4 - t9 * t19;
-t3 = (-m(1) * (r_base(3) + rSges(1,3)) - m(2) * (rSges(2,3) + t18) - m(3) * (t14 * rSges(3,1) - sin(qJ(2)) * rSges(3,2) + t18) - m(4) * (rSges(4,1) * t5 - rSges(4,2) * t4 + t17) - m(5) * ((rSges(5,1) * t13 - rSges(5,2) * t10) * t5 + (-pkin(5) - rSges(5,3)) * t4 + t16) - m(6) * (rSges(6,1) * t2 + rSges(6,2) * t1 + rSges(6,3) * t20 + t15) - m(7) * ((-t11 * t2 + t8 * t20) * rSges(7,1) + (t11 * t20 + t2 * t8) * rSges(7,2) + (pkin(6) + rSges(7,3)) * t1 + t15)) * g(3);
-U = t3;
+% StartTime: 2020-06-23 21:55:40
+% EndTime: 2020-06-23 21:55:41
+% DurationCPUTime: 0.15s
+% Computational Cost: add. (48->21), mult. (40->20), div. (0->0), fcn. (29->6), ass. (0->10)
+t11 = pkin(1) + r_base(3);
+t7 = cos(qJ(2));
+t10 = t7 * pkin(3) + t11;
+t6 = qJ(2) + qJ(3);
+t4 = cos(t6);
+t9 = t4 * pkin(4) + t10;
+t3 = sin(t6);
+t8 = -pkin(5) * t3 + t9;
+t1 = -t4 * cos(qJ(4)) * sin(qJ(5)) - t3 * cos(qJ(5));
+t2 = (-m(1) * r_base(3) - m(2) * (rSges(2,3) + t11) - m(3) * (rSges(3,1) * t7 + t11) - m(4) * (rSges(4,1) * t4 - rSges(4,2) * t3 + t10) - m(5) * ((-pkin(5) - rSges(5,3)) * t3 + t9) - m(6) * (rSges(6,2) * t1 + t8) - m(7) * ((pkin(6) + rSges(7,3)) * t1 + t8)) * g(3);
+U = t2;

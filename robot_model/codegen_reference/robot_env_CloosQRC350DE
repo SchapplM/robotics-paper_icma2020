@@ -1,5 +1,5 @@
-# Industrieroboter, Cloos QRC 350 (6 FG)
-# Bodenmontage, Differentialgetriebe in Handachsen
+# Industrial Robot, Cloos QRC 350 (6 DoF)
+# Floor mounting, differential gear in hand axis
 
 robot_name := "CloosQRC350DE":
 
@@ -14,13 +14,29 @@ b := Matrix(6,1,[0, 0, 0, 0, 0, 0]):
 beta := Matrix(6,1,[0, 0, 0, 0, 0, 0]):
 theta := Matrix(NJ,1,[rho1(t),qJ_t(2,1),qJ_t(3,1),qJ_t(4,1),qJ_t(5,1),rho6(t)]) + qoffset:
 
-# Allgemeine Winkel (für Gelenkkoordinaten, die nicht in theta-Richtung zeigen)
+# General angles (for joint coordinates not point in theta direction)
 kintmp_t := Matrix(2, 1, [rho1(t), rho6(t)]);
 kintmp_s := Matrix(2, 1, [rho1s, rho6s]);
 
-# Schwerkraft in nur eine Richtung
+# Only perpendicular gravity
 g_world := <0;0;g3>:
 
-# Alles soll schnell gehen
-codegen_opt := 1:
-simplify_options := Vector(10,0): # Keine Vereinfachungen.
+# Set CoM components to zero (in MDH frames)
+# See validate_hybrdyn.m for conversion of the CoM coordinates from SDH to MDH frames. Variable rc_all_mdh.
+user_CoM := <<0;0;0> | \
+             <SX1;SY1;SZ1> | \
+             <SX2;  0;SZ2> | \
+             <SX3;SY3;SZ3> | \
+             <  0;  0;SZ4> | \
+             <  0;SY5;  0> | \
+             <  0;  0;SZ6>>:
+             
+# Set inertia tensors: Order: XX;XY,XZ,YY,YZ,ZZ (different from Matlab script)
+# see validate_hybrdyn.m for conversion from SDH to MDH (variable Ic_all_mdh)
+user_inertia := <<   0;   0;   0;   0;   0;   0>| \
+                 <XXC1;XYC1;XZC1;YYC1;YZC1;ZZC1>| \
+                 <XXC2;   0;XZC2;YYC2;   0;ZZC2>| \
+                 <XXC3;XYC3;XZC3;YYC3;YZC3;ZZC3>| \
+                 <XXC4;   0;   0;YYC4;   0;ZZC4>| \
+                 <XXC5;   0;   0;YYC5;   0;ZZC5>| \
+                 <XXC6;   0;   0;YYC6;   0;ZZC6>>:

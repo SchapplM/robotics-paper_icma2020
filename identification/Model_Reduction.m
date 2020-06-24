@@ -1,4 +1,6 @@
-% % Author M.Sc. Björn Volkmann
+
+% Bjoern Volkmann, bjoern.volkmann@imes.uni-hannover.de, 2020-06
+% (C) Institut fuer Mechatronische Systeme, Leibniz Universitaet Hannover
 
 addpath(genpath('../'));
 clear

@@ -18,8 +18,8 @@
 %   Last row only contains [0 0 0 1].
 
 % Quelle: HybrDyn-Toolbox
-% Datum: 2020-06-20 08:27
-% Revision: 6013df02bda2c1f6ebc95d3649839f696d960e41 (2020-06-19)
+% Datum: 2020-06-23 22:05
+% Revision: 9ee7546dde8543a81bf40e37a1400ef9d9e232c4 (2020-06-23)
 % Moritz Schappler, moritz.schappler@imes.uni-hannover.de
 % (C) Institut für Mechatronische Systeme, Universität Hannover
 
@@ -35,9 +35,9 @@ assert(isreal(pkin) && all(size(pkin) == [6 1]), ...
 %% Symbolic Calculation
 % From joint_transformation_mdh_rotmat_matlab.m
 % OptimizationMode: 2
-% StartTime: 2020-06-20 07:59:49
-% EndTime: 2020-06-20 07:59:50
-% DurationCPUTime: 0.14s
+% StartTime: 2020-06-23 21:55:31
+% EndTime: 2020-06-23 21:55:31
+% DurationCPUTime: 0.13s
 % Computational Cost: add. (8->8), mult. (0->0), div. (0->0), fcn. (24->12), ass. (0->13)
 t61 = cos(qJ(1));
 t60 = cos(qJ(2));
