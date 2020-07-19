@@ -5,14 +5,10 @@
 \subsection{Parameter Estimation}
 \label{subsec:ParameterEstimation}
 
-
-For parameter identification the model equations from \eqref{eq:model_equation1} are transformed into the parameter linear matrix notation
-
-\begin{equation} \label{eq:ParameterEstimation_regressor}
-    \boldsymbol{\tau} = \boldsymbol{X}(\boldsymbol{q}, \dot{\boldsymbol{q}},\ddot{\boldsymbol{q}}) \boldsymbol{\theta},
-\end{equation}
-
-where $\boldsymbol{\tau}$ is the joint torque vector, $\boldsymbol{X}$ denotes the regression matrix and $\boldsymbol{\theta} \in \mathbb{R}^{35}$ is the parameter vector. Using a sufficient number of samples in the estimation process leads to an over-determined system of linear equations:
+The base parameter form of the dynamics in (\ref{eq:model_regressor}) is used to estimate
+the parameter vector $\boldsymbol{\theta} \in \mathbb{R}^{35}$.
+%
+Using a sufficient number of samples in the estimation process leads to an over-determined system of linear equations:
 
 \begin{equation} \label{eq:ParameterEstimation_problem}
 \begin{aligned}
