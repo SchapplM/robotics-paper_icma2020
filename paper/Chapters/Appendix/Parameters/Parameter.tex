@@ -1,13 +1,15 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
 
 \appendices
 \label{sec:Appendix}
 \section{Minimal Dynamics Parameter Vector}
 \label{sec:MinparamVector}
 
-The used Parameters are the mass $m_j$, the center of mass $\boldsymbol{r}_j$ in the coordinate system $(KS)_j$, the inertia $_{(j)}\boldsymbol{J}_j^{(j)}$ in the coordinate system $(KS)_j$, the motor and gear inertia $J_{Aj}$ as well as the Coulomb and viscous friction $f_{cj}$ and $f_{vj}$ for the joints $j=1,\ldots,6$ respectively. 
-The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defined in \eqref{eq:MassenSumme}. The notation for $\boldsymbol{r}_j$ and $_{(j)}J_j^{(j)}$ is given in \eqref{eq:Komponentenschreibweise}.
+The used Parameters are the mass $m_j$, the center of mass $\boldsymbol{r}_j$ in the coordinate system $(CS)_j$, the inertia $_{(j)}\boldsymbol{J}_j^{(j)}$ in the coordinate system $(CS)_j$ and referring to the frame origin, the motor and gear inertia $J_{Aj}$ as well as the Coulomb and viscous friction $f_{\mathrm{c}j}$ and $f_{\mathrm{v}j}$ for the joints $j=1,\ldots,6$ respectively. 
+The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defined in \eqref{eq:MassenSumme}.
+The notation for $\boldsymbol{r}_j$ and $_{(j)}J_j^{(j)}$ is defined by
 
 \begin{equation}
 \label{eq:Komponentenschreibweise}
@@ -17,7 +19,9 @@ The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defi
 		r_{jy} \\
 		r_{jz} \\
 		\end{pmatrix}
-	\text{ ; }
+	\quad
+	\mathrm{and}
+	\quad
 	_{(j)}\boldsymbol{J}_j^{(j)} = 
 		\begin{pmatrix}
 		J_{jxx} & J_{jxy} & J_{jxz} \\
@@ -56,13 +60,13 @@ The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defi
 			J_{6zz} \\
 			J_{A6} \\
 			
-			f_{c1} \\
+			f_{\mathrm{c}1} \\
 			\vdots \\
-			f_{c6} \\
+			f_{\mathrm{c}6} \\
 			
-			f_{v1} \\
+			f_{\mathrm{v}1} \\
             \vdots \\
-			f_{v6} \\
+			f_{\mathrm{v}6} \\
 		\end{pmatrix}
 \end{equation}
 }
