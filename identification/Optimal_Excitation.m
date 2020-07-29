@@ -17,6 +17,8 @@ g = 9.81; % Gravitation
 l = [640;250;630;196;805;100]/1000; % Kinematic
 ks = 1000; % Steifigkeit der Coulomb-Reibung (M_Reib = fc * tanh(ks*dq))
 
+N_r = 50; %Repetitions of the Experiment
+
 %% Load Data
 fprintf('Load Data \n');
 
@@ -124,7 +126,7 @@ eC_B.axes_rel = (rC/6) * eC_B.axes(:, 1) ./ transpose( sum(tauCC) );%relative
 %model A
 sigma_A = zeros(size(theta_A));
 W = diag(reshape(1./VarianceA, [], 1));
-cov_A = inv( transpose(C_a) * W * C_a );
+cov_A = inv( transpose(C_a) * W * C_a )/N_r;
 for k = 1:length(theta_A)
     
     sigma_A(k,1) = 100 * sqrt(abs(cov_A(k,k)))/abs(theta_A(k));
@@ -134,7 +136,7 @@ end
 %model B
 sigma_B = zeros(size(theta_B));
 W = diag(reshape(1./VarianceB, [], 1));
-cov_B = inv( transpose(C_b) * W * C_b );
+cov_B = inv( transpose(C_b) * W * C_b )/N_r;
 for k = 1:length(theta_A)
     
     sigma_B(k,1) = 100 * sqrt(abs(cov_B(k,k)))/abs(theta_B(k));
