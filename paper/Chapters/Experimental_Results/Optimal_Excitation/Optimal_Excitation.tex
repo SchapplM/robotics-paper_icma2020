@@ -6,13 +6,13 @@
 \label{subsec:OptimalExcitation_Result}
 
 
-In consideration of the optimized trajectories from Sec.\,\ref{subsec:ExperimentScenario} the robot parameters are estimated using the WLS method according to \eqref{eq:ParameterEstimation_WLS}. The filtering of the respective measurement data in the frequency domain yields nearly noise free estimates of the joint angular positions, velocities and accelerations. According to \cite{Khalil.2006} it is possible to estimate the relative standard deviation $\sigma_{i}^*$ of the identified parameters for the LS method under the assumption of a deterministic design matrix and the error $\boldsymbol{e}$ as zero-mean additive independent Gaussian noise. Applying this to the WLS method with $\mathrm{var}(\boldsymbol{y}) = \boldsymbol{W}^{-1}$ yields the covariance matrix
+In consideration of the optimized trajectories from Sec.\,\ref{subsec:ExperimentScenario} the robot parameters are estimated using the WLS method according to \eqref{eq:ParameterEstimation_WLS}. The filtering of the respective measurement data in the frequency domain yields nearly noise free estimates of the joint angular positions, velocities and accelerations. According to \cite{Khalil.2006} it is possible to estimate the relative standard deviation $\sigma_{i}^*$ of the identified parameters for the LS method under the assumption of a deterministic design matrix and the error $\boldsymbol{e}$ as zero-mean additive independent Gaussian noise. Applying this to the WLS method with $\mathrm{var}(\boldsymbol{y}) = \frac{1}{N_\text{r}} \boldsymbol{W}^{-1}$ yields the covariance matrix
 
 \begin{equation}\label{eq:ParaVar}
 	\begin{aligned}
 &	\mathrm{var}(\hat{\boldsymbol{\theta}}) &= {}& \mathrm{var}((\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-1} \boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{y}) \\
 &								&= {}& (\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-1} \boldsymbol{C}^\mathrm{T} \boldsymbol{W} \mathrm{var}(\boldsymbol{y}) \boldsymbol{W}^\mathrm{T} \boldsymbol{C} (\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-\mathrm{T}} \\
-&								&= {}& (\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-1},
+&								&= {}& \frac{1}{N_\text{r}}(\boldsymbol{C}^\mathrm{T} \boldsymbol{W} \boldsymbol{C})^{-1},
 	\end{aligned}
 \end{equation}
 
@@ -27,6 +27,7 @@ The estimated parameters and standard deviations for trajectories \textit{A} and
 
 \begin{table}
 	\caption{Estimated parameters for model A and B.}\label{tab:ParamTheta}
+	\vspace{-0.2cm}
 	\centering
 	\begin{tabular}[h]{|r||c|c||c|c|}\hline
 		\input{Chapters/Experimental_Results/Optimal_Excitation/Table_Parameters}
@@ -39,6 +40,7 @@ The absolute and relative model errors $e_{j}$ and $e^*_{j}$ for models A and B 
 \begin{table}
 	\caption{Prediction error for model A.}\label{tab:errorModelA}
 	\centering
+	\vspace{-0.2cm}
 	\begin{tabular}[h]{|r||c|c||c|c|}\hline
 		\input{Chapters/Experimental_Results/Optimal_Excitation/Table_errorModelA}
 		\hline
@@ -47,6 +49,7 @@ The absolute and relative model errors $e_{j}$ and $e^*_{j}$ for models A and B 
 
 \begin{table}
 	\caption{Prediction error for model B.}\label{tab:errorModelB}
+	\vspace{-0.2cm}
 	\centering
 	\begin{tabular}[h]{|r||c|c||c|c|}\hline
 		\input{Chapters/Experimental_Results/Optimal_Excitation/Table_errorModelB}
