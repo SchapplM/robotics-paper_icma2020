@@ -1,5 +1,6 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
 \subsection{Signal Processing}
 \label{subsec:SignalProcessing}
 All experiments described in Sec.\,\ref{subsec:ExperimentScenario} are carried out multiple times with the same set of parameters. Over $N_\text{r}=50$ repetitions of each experiment the mean of the joint angular positions $\overline{\boldsymbol{q}}(t_p)$ and the measured torques $\overline{\boldsymbol{\tau}}(t_p)$ are calculated for every time step $t_p$. 
@@ -14,9 +15,9 @@ Because of the averaging of the measurement data and the additional filtering fo
 
 To take into account the different signal-to-noise ratios in each joint, the WLS method is used for parameter estimation. The measurement points are weighted using the inverse of the covariance matrix of the measured torque. The noise of the torque measurements in all joints $j$ in every time step $t_p$ can be estimated using the equation for the sample variance
 \begin{equation}\label{eq:var_tau}
-	\sigma^2_{j,p} = \frac{1}{N_\textit{r}-1} \sum\limits_{k=1}^{N_\textit{r}} (\tau_{k,j} (t_p) - \overline{\tau}_j(t_p))^2,
+	\sigma^2_{j,p} = \frac{1}{N_\text{r}-1} \sum\limits_{k=1}^{N_\text{r}} (\tau_{k,j} (t_p) - \overline{\tau}_j(t_p))^2,
 \end{equation}
-where (k) refers to the repetitions of the experiment.
+where $k$ refers to the repetitions of the experiment.
 The matrix $\boldsymbol{W}$ is then defined as:
 \begin{equation}\label{eq:WLS_Gew}
 	\boldsymbol{W} = \mathrm{diag}(\boldsymbol{W}_1^{-1}, \boldsymbol{W}_2^{-1}, \hdots, \boldsymbol{W}_6^{-1})
@@ -26,5 +27,5 @@ The matrix $\boldsymbol{W}$ is then defined as:
 	\boldsymbol{W}_j = \mathrm{diag}(\sigma^2_{j,1}, \sigma^2_{j,2}, \hdots, \sigma^2_{j,p}).
 \end{equation}
 Since the measurements are assumed to be independent, $\boldsymbol{W}$ is a diagonal matrix.
-All measurements used for this evaluation were taken when the robot was at rest and in the controlled state.
+All measurements used for this evaluation were taken when the robot was in the controlled state.
 

@@ -1,7 +1,11 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
+
 \subsection{Dynamics Model of Serial Robots}
-This subsection describes the model of the 6-axis robot. The joint torque $\boldsymbol{\tau}$ of all axes required for the feedforward control can be calculated by
+This subsection describes the dynamics model of the 6-axis robot.
+The joint torques $\boldsymbol{\tau}$ of all axes required for the feedforward control can be calculated by
+%
 \begin{equation}
 \label{eq:model_equation1}
 \begin{split}
@@ -9,13 +13,42 @@ This subsection describes the model of the 6-axis robot. The joint torque $\bold
 \boldsymbol{M}(\boldsymbol{q}) \ddot{\boldsymbol{q}}+\boldsymbol{c}(\boldsymbol{q}, \dot{\boldsymbol{q}})+\boldsymbol{g}(\boldsymbol{q})+\boldsymbol{h}(\dot{\boldsymbol{q}}).
 \end{split}
 \end{equation}
-Herein $\boldsymbol{q}, \dot{\boldsymbol{q}}, \ddot{\boldsymbol{q}}$ represent the joint angles, velocities and accelerations given by the motion planning. $\boldsymbol{M}$ contains the moments of inertia, $\boldsymbol{c}$ Coriolis effects and $\boldsymbol{g}$ gravitational effects. The friction model is represented by $\boldsymbol{h}$ with
+%
+Herein $\boldsymbol{q}$, $\dot{\boldsymbol{q}}$ and $\ddot{\boldsymbol{q}}$ represent the joint angles, velocities and accelerations given by the motion planning. $\boldsymbol{M}$ denotes the mass matrix, $\boldsymbol{c}$ the Coriolis effects and $\boldsymbol{g}$ the gravitational effects.
+The friction model is represented by $\boldsymbol{h}$ with
+%
 \begin{equation}
-h_{j}=f_{\mathrm{c}, j} \operatorname{sgn}\left(\dot{{q}}_{j}\right)+f_{\mathrm{v}, j} \dot{q}_{j}.
+h_{j}=f_{\mathrm{c}, j} \operatorname{sgn}\left(\dot{{q}}_{j}\right)+f_{\mathrm{v}, j} \dot{q}_{j},
 \end{equation}
-$f_{\mathrm{c}, j}$ represents the Coulomb friction coefficient for joint $j$ and $f_{\mathrm{v}, j}$ the viscous friction coefficient. The gear transmission between motor and link side is omitted for the sake of simplifying the equations. Measured motor velocities and estimated motor torques are transformed accordingly.
+%
+where $f_{\mathrm{c}, j}$ represents the Coulomb friction coefficient for joint $j$ and $f_{\mathrm{v}, j}$ the viscous friction coefficient. 
+The gear transmission between motor and link side is omitted for the sake of simplifying the equations. Measured motor velocities and estimated motor torques are transformed accordingly.
 
-In this paper a minimal parametric model is used for the inverse dynamics rigid body model. 
-It has been obtained by symbolically determining the base parameters using the software \textsc{Maple}, similar to the geometrical approach of \cite{Khalil.2006}.
-Thereby it is possible to identify the model parameters within one identification cycle.
-Since some of the robot links possess symmetries, assumptions about their center of mass and products of inertia were made. From originally 60  parameters of the rigid body dynamics, these assumptions and the base parameter formulation led to only 23 base inertial parameters. For each of the six joints there are two additional parameters representing the Coulomb and viscous friction. The chosen parameter vector $\boldsymbol{\theta}$ to be identified therefore contains 35 entries and is shown in appendix \ref{sec:MinparamVector}.
+By expressing the rigid body dynamics with the inertial parameters (drive train inertia, mass, first and second moment of mass) and by using a linear friction model, (\ref{eq:model_equation1}) can be expressed in a linear form \cite{Khalil.2006}.
+%
+This regressor form
+%
+\begin{equation}
+\boldsymbol{\tau}
+=
+\boldsymbol{X}'(\boldsymbol{q}, \dot{\boldsymbol{q}},\ddot{\boldsymbol{q}}) \boldsymbol{\theta}'
+=
+\boldsymbol{X}(\boldsymbol{q}, \dot{\boldsymbol{q}},\ddot{\boldsymbol{q}}) \boldsymbol{\theta}
+\label{eq:model_regressor}
+\end{equation}
+%
+with regression matrix $\boldsymbol{X}$ and parameter vector $\boldsymbol{\theta}$
+can be given with a full set of parameters (on the left hand side, noted with a dash) or in a parameter minimal form (right hand side).
+Only the latter form of the parameters can be identified within one identification cycle.
+The general model $\boldsymbol{X}'$/$\boldsymbol{\theta}'$ uses 66 parameters for the rigid body dynamics.
+For each of the six joints two additional parameters represent the Coulomb and viscous friction.
+
+The right hand side of (\ref{eq:model_regressor}) expresses the minimal parametric model with 23 base inertial parameters.
+The chosen parameter vector $\boldsymbol{\theta}$ to be identified therefore contains 35 entries and is shown in appendix \ref{sec:MinparamVector}.
+%
+Since some of the robot links possess symmetries, assumptions about their center of mass and products of inertia were made.
+Further, a differential gear couples joints 5 and 6, similar to the robot example in \cite{M.Gautier.1995}.
+This prevents the use of the direct determination of the base inertial parameters with the geometric approach from \cite{Khalil.2006}.
+Instead, a purely symbolic approach is chosen: the relation $\boldsymbol{\theta}=\boldsymbol{K} \boldsymbol{\theta}'$ leads to a linear system of equations $\boldsymbol{X}' = \boldsymbol{X}'\boldsymbol{K}$.
+It is solved symbolically for the unknown $\boldsymbol{K}$ with the computer algebra system \textsc{Maple}, leading to the base parameter formulation $\boldsymbol{X}$/$\boldsymbol{\theta}$.
+For the implementation the regressor matrix of the energy instead of the dynamics is used, following \cite{M.Gautier.1995, Khalil.2006}.

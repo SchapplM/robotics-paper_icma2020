@@ -4,7 +4,7 @@ Authors:
 
 Björn Volkmann, Daniel Kaczor, Mathias Tantau, Moritz Schappler and Tobias Ortmaier
 
-This repository provides supplemental material to the following submission to the IEEE ICMA 2020 conference:
+This repository provides supplemental material to the following publication at the IEEE ICMA 2020 conference:
 
 ```bib
 @Conference{VolkmannKacTanSch2020,
@@ -13,7 +13,6 @@ This repository provides supplemental material to the following submission to th
   booktitle = {IEEE International Conference on Mechatronics and Automation},
   year      = {2020},
   month     = {October},
-  note      = {submitted},
 }
 ```
 

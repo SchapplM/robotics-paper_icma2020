@@ -1,5 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
+
 \subsection{Model Reduction Algorithm}
 A parameter identification in a process not optimized for this purpose leads to a significantly worse identifiability compared to an optimized excitation trajectory due to the sub-optimal excitation of the individual parameters.
 In order to still perform a parameter estimation directly on a process the robot model has to be reduced.
@@ -8,7 +10,9 @@ Sensitivity can differ between parameters so that some parameters affect the out
 
 Many model order reduction techniques strive to establish a new basis without multi-collinearities, which is possibly even orthogonal. 
 Here these approaches are prohibited by the fact that the interpretability of the base parameters should be preserved in the sense of the linear combination of physical parameters in (\ref{eq:Parametersatz}). 
-A different approach is to delete parameters that are involved in collinearity problems \cite{Akinniyi2017}, but this could change the prediction of the model considerably if the respective parameter is important. Therefore, only the sensitivity problem is addressed here. As the model can be written linear in the parameters, see \eqref{eq:ParameterEstimation_regressor}, it is possible to remove those parameters with a low sensitivity on a per-parameter basis. The parameter sensitivities depend on the excitation but not on the parameter values. For a particular excitation the sensitivity matrix is given by the design matrix $\boldsymbol{C}$. To characterize the sensitivity of a parameter $i$ with a single value the mean of the respective column $\overline{c}_i$ of $\boldsymbol{C}$ over all joints is used:
+A different approach is to delete parameters that are involved in collinearity problems \cite{Akinniyi2017}, but this could change the prediction of the model considerably if the respective parameter is important. 
+Therefore, only the sensitivity problem is addressed here. As the model can be written linear in the parameters, see \eqref{eq:model_regressor}, it is possible to remove those parameters with a low sensitivity on a per-parameter basis. The parameter sensitivities depend on the excitation but not on the parameter values. For a particular excitation the sensitivity matrix is given by the design matrix $\boldsymbol{C}$.
+To characterize the sensitivity of a parameter $i$ with a single value the mean of the respective column $\overline{c}_i$ of $\boldsymbol{C}$ over all joints is used:
 %\begin{equation}\label{eq:mean_Sensitivity}
 %	\overline{c}_i = \frac{1}{6N} \sum_{i = 1}^{6N} \left| \boldsymbol{c}_i \right| \text{ with } \boldsymbol{C} = (\boldsymbol{c}_1, \boldsymbol{c}_2, %\hdots, \boldsymbol{c}_i).
 %\end{equation}

@@ -1,13 +1,15 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
 
 \appendices
 \label{sec:Appendix}
 \section{Minimal Dynamics Parameter Vector}
 \label{sec:MinparamVector}
 
-The used Parameters are the mass $m_j$, the center of mass $\boldsymbol{r}_j$ in the coordinate system $(KS)_j$, the inertia $_{(j)}\boldsymbol{J}_j^{(j)}$ in the coordinate system $(KS)_j$, the motor and gear inertia $J_{Aj}$ as well as the Coulomb and viscous friction $f_{cj}$ and $f_{vj}$ for the joints $j=1,\ldots,6$ respectively. 
-The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defined in \eqref{eq:MassenSumme}. The notation for $\boldsymbol{r}_j$ and $_{(j)}J_j^{(j)}$ is given in \eqref{eq:Komponentenschreibweise}.
+The used Parameters are the mass $m_j$, the center of mass $\boldsymbol{r}_j$ in the coordinate system $(CS)_j$, the inertia $_{(j)}\boldsymbol{J}_j^{(j)}$ in the coordinate system $(CS)_j$ and referring to the frame origin, the motor and gear inertia $J_{Aj}$ as well as the Coulomb and viscous friction $f_{\mathrm{c}j}$ and $f_{\mathrm{v}j}$ for the joints $j=1,\ldots,6$ respectively. 
+The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defined in \eqref{eq:MassenSumme}.
+The notation for $\boldsymbol{r}_j$ and $_{(j)}J_j^{(j)}$ is defined by
 
 \begin{equation}
 \label{eq:Komponentenschreibweise}
@@ -17,25 +19,59 @@ The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defi
 		r_{jy} \\
 		r_{jz} \\
 		\end{pmatrix}
-	\text{ ; }
+	\quad
+	\mathrm{and}
+	\quad
 	_{(j)}\boldsymbol{J}_j^{(j)} = 
 		\begin{pmatrix}
 		J_{jxx} & J_{jxy} & J_{jxz} \\
 		J_{jxy} & J_{jyy} & J_{jyz} \\
 		J_{jxz} & J_{jyz} & J_{jzz} \\
 		\end{pmatrix}
+		.
 \end{equation}
 
 
 {\footnotesize
 \begin{equation}
 \label{eq:Parametersatz}
-	\boldsymbol{\theta} = 
+%	\begin{pmatrix}
+%	    \theta_1 \\
+%	    \theta_2 \\
+%	    \theta_3 \\
+%	    \theta_4 \\
+%	    \theta_5 \\
+%	    \theta_6 \\
+%	    \theta_7 \\
+%	    \theta_8 \\
+%	    \theta_9 \\
+%	    \theta_{10} \\
+%	    \theta_{11} \\
+%	    \theta_{12} \\
+%	    \theta_{13} \\
+%	    \theta_{14} \\
+%	    \theta_{15} \\
+%	    \theta_{16} \\
+%	    \theta_{17} \\
+%	    \theta_{18} \\
+%	    \theta_{19} \\
+%	    \theta_{20} \\
+%	    \theta_{21} \\
+%	    \theta_{22} \\
+%	    \theta_{23} \\
+%	    \theta_{24} \\
+%	    \vdots \\
+%	    \theta_{29} \\
+%	    \theta_{30} \\
+%	    \vdots \\
+%	    \theta_{36} \\
+%	\end{pmatrix
+	\boldsymbol{\theta}= 
 		\begin{pmatrix}
-			J_{1yy} + 2 l_2 m_1 r_{1x} + l_2^2 m_{123456} + J_{A1} + J_{2yy} - l_3^2 m_{23456} + J_{3zz} - l_4^2 m_{3456} \\
+			J_{1yy} + 2 l_2 m_1 r_{1x} + l_2^2 m_{123456} + J_{\text{A}1} + J_{2yy} - l_3^2 m_{23456} + J_{3zz} - l_4^2 m_{3456} \\
 			l_3^2 m_{23456} + J_{2xx} - J_{2yy} \\
 			- l_3 m_2 r_{2z} + l_3 m_3 r_{3y} + J_{2xy} \\
-			- l_3^2 m_{23456} + J_{2zz} + J_{A2} \\
+			- l_3^2 m_{23456} + J_{2zz} + J_{\text{A}2} \\
 			l_3 m_{23456} + m_2 r_{2x} \\
 			J_{3xx} -J_{3zz} + l_4^2 m_3 + J_{4zz} + 2 l_5 m_4 r_{4y} + (l_4^2 +l_5^2) m_{456} \\
 			-l_4 m_3 r_{3y} + J_{3xy} \\
@@ -44,25 +80,25 @@ The combined masses $m_{123456}$, $m_{23456}$, $m_{3456}$ and $m_{456}$ are defi
 			J_{3yz} \\
 			l_4 m_{3456} + m_3 r_{3x} \\
 			l_5 m_{456} + m_3 r_{3z} + m_4 r_{4y} \\
-			J_{A3} \\
+			J_{\text{A}3} \\
 			J_{4xx} - J_{4zz} + J_{5zz} \\
 			J_{4yy} + J_{5zz} \\
-			J_{A4} \\
+			J_{\text{A}4} \\
 			l_6^2 m_6 + 2 l_6 m_6 r_{6z} + J_{5xx} - J_{5zz} + J_{6yy} \\
 			l_6^2 m_6 + 2 l_6 m_6 r_{6z} + J_{5yy} + J_{6yy} \\
 			l_6 m_6 + m_5 r_{5z} + m_6 r_{6z} \\
-			J_{A5} \\
+			J_{\text{A}5} \\
 			J_{6xx} - J_{6yy} \\
 			J_{6zz} \\
-			J_{A6} \\
+			J_{\text{A}6} \\
 			
-			f_{c1} \\
+			f_{\mathrm{c},1} \\
 			\vdots \\
-			f_{c6} \\
+			f_{\mathrm{c},6} \\
 			
-			f_{v1} \\
+			f_{\mathrm{v},1} \\
             \vdots \\
-			f_{v6} \\
+			f_{\mathrm{v},6} \\
 		\end{pmatrix}
 \end{equation}
 }

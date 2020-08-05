@@ -1,5 +1,6 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en_US
+% !TEX root = ../../../ICMA2020.tex
 
 \subsection{Experimental Model Application}
 
@@ -12,17 +13,19 @@ Here $\boldsymbol{q}_\text{d}$, $\dot{\boldsymbol{q}}_\text{d}$ and $\ddot{\bold
   \vspace{-0.2cm}
   \centering
    \input{Chapters/Experimental_Results/Experimental_Validation/Controller.pdf_tex}
+   \vspace{-0.3 cm}
   \caption{Control loop of the robot.}
   \label{fig:controler}
-  \vspace{-0.1cm}
+  \vspace{-0.2cm}
 \end{figure}
 
 
-The process-based models are used for their respective process and are then compared to the models A and B. %The model output is added to the joint torque reference with a multiplier $k_m$. During the experiments the best results were achieved with $k_M = 0.8$.
+The process-based models are used for their respective process and are then compared with the models A and B. For friction feed-forward instead of $\operatorname{sgn}\left(\dot{{q}}_{j}\right)$ the practically more stable version $\operatorname{tanh}\left(1000\dot{{q}}_{j}\right)$ is used. %The model output is added to the joint torque reference with a multiplier $k_m$. During the experiments the best results were achieved with $k_M = 0.8$.
 To quantify the controller performance the root mean square value (RMS) of the reference error is calculated over all measurement points for each joint. For process 1 the RMS values of the reference errors for the different models are given in Tab.\,\ref{tab:RefErrorProcess1}.% As an example Fig. \ref{fig:ExpValProcess1} shows the reference error for process 1 in joint 4.
 
 \begin{table}[tb]
 	\caption{RMS values of the reference error for process 1 in all joints.}\label{tab:RefErrorProcess1}
+	\vspace{-0.2cm}
 	\centering
 	\begin{tabular}[h]{|r|c|c|c|c|}\hline
 		\input{Chapters/Experimental_Results/Experimental_Validation/Table_RefErrorProcess1}
@@ -53,9 +56,10 @@ The application of all models for process 2 yields similar RMS values to process
   \vspace{-0.2cm}
   \centering
    \includegraphics[width = 7.5cm]{Chapters/Experimental_Results/Experimental_Validation/EE_square.pdf}
+   \vspace{-0.5cm}
   \caption{Reference and actual trajectory of the end-effector in Cartesian space.}
   \label{fig:ExpValProcess2}
-  \vspace{-0.1cm}
+  \vspace{-0.2cm}
 \end{figure}
 
 In general both process-based models perform similar to the models A and B which were derived from a classical parameter identification. This shows that the process based-models are suitable for practical application.% On average the model based feed-forward control scheme, utilizing the process models, reduces the control error by a factor of 3. This shows that the process based models are suitable for practical application.
