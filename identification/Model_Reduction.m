@@ -118,25 +118,26 @@ fprintf('Initial parameter estimation \n');
 [rV, ~] = size(tauV);%number of measurement points in the validation set
 
 % %inition parameter estimation using the WLS method with the full model
-% w = reshape(VarianceT, [], 1);
-% w = 1./w;
-% WC = zeros(size(C_train));
-% for row = 1:rT
-%     WC(row,:) = w(row)*C_train(row,:);
-% end
-% CT_C = transpose(C_train) * WC;% C^T*W*C
+w = reshape(VarianceT, [], 1);
+w = 1./w;
+WC = zeros(size(C_train));
+for row = 1:rT
+    WC(row,:) = w(row)*C_train(row,:);
+end
+CT_C = transpose(C_train) * WC;% C^T*W*C
 % CT_y = transpose(C_train) * (w .* tauT);% C^T*W*y
 % 
-% rang = rank(CT_C, 1e-8);
-% 
-% %Test for full rank of C^T*W*C
-% if rang < numParameter
-%    fprintf('ERROR: The Watrix C^T*W*C is not of full rank \n');
-%     return
-% end
+rang = rank(CT_C, 1e-8);
+
+%Test for full rank of C^T*W*C
+if rang < numParameter
+   fprintf('ERROR: The Watrix C^T*W*C is not of full rank \n');
+    return
+end
 % 
 % %estimate parameters
 % theta = CT_C \ CT_y;
+clear w WC CT_C rang
 
 theta = WLS_method(C_train, tauT, VarianceT);
 
