@@ -1,8 +1,7 @@
-# Sensitivity-based Model Reduction for In-Process Identification of Industrial Robots Inverse Dynamics (Preprint)
+# Sensitivity-based Model Reduction for In-Process Identification of Industrial Robots Inverse Dynamics
 
 Authors:
-
-Björn Volkmann, Daniel Kaczor, Mathias Tantau, Moritz Schappler and Tobias Ortmaier
+Björn Volkmann, Daniel Kaczor, Mathias Tantau, Moritz Schappler, and Tobias Ortmaier
 
 This repository provides supplemental material to the following publication at the IEEE ICMA 2020 conference:
 
@@ -10,9 +9,11 @@ This repository provides supplemental material to the following publication at t
 @Conference{VolkmannKacTanSch2020,
   author    = {Volkmann, Björn and Kaczor, Daniel and Tantau, Mathias and Schappler, Moritz and Ortmaier, Tobias},
   title     = {Sensitivity-based Model Reduction for In-Process Identification of Industrial Robots Inverse Dynamics},
-  booktitle = {IEEE International Conference on Mechatronics and Automation},
+  booktitle = {2020 IEEE International Conference on Mechatronics and Automation (ICMA)}, 
   year      = {2020},
   month     = {October},
+  pages     = {912-919},
+  doi       = {10.1109/ICMA49215.2020.9233709},
 }
 ```
 
